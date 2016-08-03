@@ -1,32 +1,32 @@
 package immigrantsTask.exceptions;
 
-public class VzriviSeBombaException extends Exception {
+public class BombExploadedException extends Exception {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -6195735261698538544L;
 
-	public VzriviSeBombaException() {
+	public BombExploadedException() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public VzriviSeBombaException(String message) {
+	public BombExploadedException(String message) {
 		super(message);
 		// TODO Auto-generated constructor stub
 	}
 
-	public VzriviSeBombaException(Throwable cause) {
+	public BombExploadedException(Throwable cause) {
 		super(cause);
 		// TODO Auto-generated constructor stub
 	}
 
-	public VzriviSeBombaException(String message, Throwable cause) {
+	public BombExploadedException(String message, Throwable cause) {
 		super(message, cause);
 		// TODO Auto-generated constructor stub
 	}
 
-	public VzriviSeBombaException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+	public BombExploadedException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
 		super(message, cause, enableSuppression, writableStackTrace);
 		// TODO Auto-generated constructor stub
 	}

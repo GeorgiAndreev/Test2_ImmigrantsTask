@@ -8,26 +8,30 @@ import immigrantsTask.weapons.Weapon;
 
 public class EkstremistImmigrant extends Immigrant implements IIllegalImmigrant{
 
-	private ArrayList<Weapon> orujiq;
+	private ArrayList<Weapon> weapons;
 
 	public EkstremistImmigrant(String name, float nachalnaSumaPari) throws ImmigrantException {
 		super(name, nachalnaSumaPari);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
-	public void kupiSiOrujie(Weapon orujie) throws Exception {
-		if (this.getInitialAmountMoney() >= orujie.getPrice()) {
-			this.orujiq.add(orujie);
+	public void buyWeapon(Weapon weapon) throws Exception {
+		if (weapon.isSold() == true) {
+			System.out.println("Weapon is already sold.");
+			return;
+		}
+		if (this.getInitialAmountMoney() >= weapon.getPrice()) {
+			this.weapons.add(weapon);
 		} else {
-			throw new IllegalImmigrantDiedFromRageException("Nqmam pari da si kupq orujie i umrqh ot qd");
+			throw new IllegalImmigrantDiedFromRageException("Immigrant had not enough money to buy weapon and died from rage.");
 		}
 		
 	}
 
 	@Override
-	public void strelqiPoHora() throws Exception {
-		// TODO Auto-generated method stub
+	public void shootAtPeople() throws Exception {
+		
+		
 		
 	}
 

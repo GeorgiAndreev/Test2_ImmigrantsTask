@@ -1,19 +1,18 @@
 package immigrantsTask.weapons;
 
 import immigrantsTask.exceptions.WeaponException;
-import immigrantsTask.exceptions.VzriviSeBombaException;
+import immigrantsTask.exceptions.BombExploadedException;
 
 public class Bomb extends Weapon implements Detonateable{
 
 	public Bomb(float price) throws WeaponException {
 		super(price);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
-	public void explode() throws VzriviSeBombaException {
-		System.out.println("Bomba se vzrivqvq!");
-		throw new VzriviSeBombaException("Bomba se vzrivi!");
+	public void explode() throws BombExploadedException {
+		System.out.println("A bomb explodes!");
+		throw new BombExploadedException("A bomb exploaded!");
 		
 	}
 

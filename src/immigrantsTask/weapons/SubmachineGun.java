@@ -6,13 +6,13 @@ public class SubmachineGun extends Weapon implements IShooting{
 
 	public SubmachineGun(float price) throws WeaponException {
 		super(price);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public int shoot() throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		System.out.println("Submachine gun shooting...");
+		int numberOfPatrons = (int)(Math.random() * 1000 + 1);
+		return numberOfPatrons;
 	}
 
 }

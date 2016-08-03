@@ -4,39 +4,39 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import immigrantsTask.exceptions.ImmigrantException;
+import immigrantsTask.exceptions.PassportException;
 import immigrantsTask.helpClasses.Validation;
 
 public class NormalImmigrant extends Immigrant {
 
 	static final byte MAX_BROI_RODNINI = 10;
 	
-	private Passport pasport = new Passport(this.getName());
+	private Passport pasport;
 
-	public NormalImmigrant(String name, float nachalnaSumaPari) throws ImmigrantException {
+	public NormalImmigrant(String name, float nachalnaSumaPari) throws ImmigrantException, PassportException {
 		super(name, nachalnaSumaPari);
-		
-		// TODO Auto-generated constructor stub
+		this.pasport = new Passport(this.getName());
 	}
 
 	
 	@Override
-	void addRodnina(Immigrant imigrant) throws ImmigrantException {
-		if (Validation.validateObject(imigrant)) {
-			int numberOfRelativesNow = 0;
+	void addRodnina(Immigrant immigrant) throws ImmigrantException {
+		if (Validation.validateObject(immigrant)) {
+			int currentNumberOfRelatives = 0;
 			for (Iterator<Immigrant> iterator = relatives.iterator(); iterator.hasNext();) {
 				Immigrant imigrantRodnina = (Immigrant) iterator.next();
 				if (imigrantRodnina != null) {
-					numberOfRelativesNow++;
+					currentNumberOfRelatives++;
 				}
 			}
-			if (numberOfRelativesNow < 10) {
-				this.relatives.add(imigrant);
+			if (currentNumberOfRelatives < 10) {
+				this.relatives.add(immigrant);
 			} else {
-				throw new ImmigrantException("Ne moje pove4e rodnini max 10 moje da sa");
+				throw new ImmigrantException("Cannot add more relatives: max number of relatives is 10.");
 			}
 			
 		} else {
-			throw new ImmigrantException("Invalid relative");
+			throw new ImmigrantException("Invalid relative.");
 		}
 	}
 	

@@ -7,13 +7,13 @@ import immigrantsTask.weapons.Weapon;
 
 public class RadikalImmigrant extends Immigrant implements IIllegalImmigrant{
 	
-	static final byte MAX_BROI_ORUJIQ = 5;
+	static final byte MAX_NUMBER_OF_WEAPONS = 5;
 	
 	private Passport pasport;
-	private ArrayList<Weapon> orujiq; 
+	private ArrayList<Weapon> weapons; 
 	
-	public RadikalImmigrant(String name, float nachalnaSumaPari) throws ImmigrantException {
-		super(name, nachalnaSumaPari);
+	public RadikalImmigrant(String name, float initialAmountMoney) throws ImmigrantException {
+		super(name, initialAmountMoney);
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -28,13 +28,13 @@ public class RadikalImmigrant extends Immigrant implements IIllegalImmigrant{
 	}
 
 	@Override
-	public void kupiSiOrujie(Weapon orujie) throws Exception {
+	public void buyWeapon(Weapon weapon) throws Exception {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void strelqiPoHora() throws Exception {
+	public void shootAtPeople() throws Exception {
 		// TODO Auto-generated method stub
 		
 	}

@@ -11,8 +11,9 @@ public class Pistol extends Weapon implements IShooting{
 
 	@Override
 	public int shoot() throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		System.out.println("Pistol shooting...");
+		int numberOfPatrons = (int)(Math.random() * 1000 + 1);
+		return numberOfPatrons;
 	}
 
 }
