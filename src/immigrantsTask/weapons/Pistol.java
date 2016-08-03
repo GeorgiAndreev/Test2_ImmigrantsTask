@@ -6,7 +6,6 @@ public class Pistol extends Weapon implements IShooting{
 
 	public Pistol(float price) throws WeaponException {
 		super(price);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

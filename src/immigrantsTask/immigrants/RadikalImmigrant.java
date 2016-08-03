@@ -2,7 +2,10 @@ package immigrantsTask.immigrants;
 
 import java.util.ArrayList;
 
+import immigrantsTask.exceptions.IllegalImmigrantDiedFromRageException;
 import immigrantsTask.exceptions.ImmigrantException;
+import immigrantsTask.helpClasses.Validation;
+import immigrantsTask.weapons.IShooting;
 import immigrantsTask.weapons.Weapon;
 
 public class RadikalImmigrant extends Immigrant implements IIllegalImmigrant{
@@ -14,28 +17,42 @@ public class RadikalImmigrant extends Immigrant implements IIllegalImmigrant{
 	
 	public RadikalImmigrant(String name, float initialAmountMoney) throws ImmigrantException {
 		super(name, initialAmountMoney);
-		// TODO Auto-generated constructor stub
 	}
 	
 	public RadikalImmigrant(String name, float nachalnaSumaPari, Passport passport) throws ImmigrantException {
 		super(name, nachalnaSumaPari);
-		this.pasport = passport;
-		// TODO Auto-generated constructor stub
+		if (Validation.validateObject(passport)) {
+			this.pasport = passport;
+		} else {
+			throw new ImmigrantException("Invalid passport.");
+		}
 	}
 	
-	void vzriviBomba(){
+	void detonateBomb(){
 		
 	}
 
 	@Override
 	public void buyWeapon(Weapon weapon) throws Exception {
-		// TODO Auto-generated method stub
-		
+		if (!(weapon instanceof IShooting)) {
+			System.out.println("Radical immigrants can buy only shooting weapons.");
+			return;
+		}
+		if (weapon.isSold() == true) {
+			System.out.println("Weapon is already sold.");
+			return;
+		}
+		if (this.getInitialAmountMoney() >= weapon.getPrice()) {
+			this.weapons.add(weapon);
+		} else {
+			throw new IllegalImmigrantDiedFromRageException("Immigrant had not enough money to buy weapon and died from rage.");
+		}	
 	}
 
 	@Override
 	public void shootAtPeople() throws Exception {
-		// TODO Auto-generated method stub
+		
+		
 		
 	}
 

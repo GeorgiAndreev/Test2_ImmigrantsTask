@@ -25,7 +25,6 @@ public class EkstremistImmigrant extends Immigrant implements IIllegalImmigrant{
 		} else {
 			throw new IllegalImmigrantDiedFromRageException("Immigrant had not enough money to buy weapon and died from rage.");
 		}
-		
 	}
 
 	@Override
