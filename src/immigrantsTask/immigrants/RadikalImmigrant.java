@@ -9,8 +9,8 @@ public class RadikalImmigrant extends Immigrant implements IIllegalImmigrant{
 	
 	static final byte MAX_BROI_ORUJIQ = 5;
 	
-	Passport pasport;
-	ArrayList<Weapon> orujiq; 
+	private Passport pasport;
+	private ArrayList<Weapon> orujiq; 
 	
 	public RadikalImmigrant(String name, float nachalnaSumaPari) throws ImmigrantException {
 		super(name, nachalnaSumaPari);

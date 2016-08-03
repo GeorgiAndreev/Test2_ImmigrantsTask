@@ -5,8 +5,8 @@ import immigrantsTask.helpClasses.Validation;
 
 public abstract class Weapon {
 	
-	float price;
-	boolean isSold;
+	private float price;
+	private boolean isSold;
 	
 	public Weapon(float price) throws WeaponException {
 		if (Validation.validateNumber(price)) {
@@ -22,6 +22,10 @@ public abstract class Weapon {
 
 	public float getPrice() {
 		return price;
+	}
+
+	public boolean isSold() {
+		return isSold;
 	}
 
 	

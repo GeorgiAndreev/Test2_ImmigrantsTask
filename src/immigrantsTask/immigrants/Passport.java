@@ -6,10 +6,10 @@ import immigrantsTask.helpClasses.Validation;
 
 public class Passport {
 	
-	String name;
-	int age;
-	Town gradPoRojdenie;
-	Country darjavaPoRojdenie;
+	private String name;
+	private int age;
+	private Town gradPoRojdenie;
+	private Country darjavaPoRojdenie;
 	
 	public Passport(String name) {
 		if (Validation.validateString(name)) {

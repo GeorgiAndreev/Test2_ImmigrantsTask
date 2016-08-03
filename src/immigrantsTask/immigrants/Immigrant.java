@@ -8,10 +8,10 @@ import immigrantsTask.helpClasses.Validation;
 
 public abstract class Immigrant {
 	
-	String name;
-	float nachalnaSumaPari;
-	Town grad;
-	ArrayList<Immigrant> rodnini;
+	private String name;
+	private float initialAmountMoney;
+	private Town grad;
+	protected ArrayList<Immigrant> relatives;
 	
 	public Immigrant(String name, float nachalnaSumaPari) throws ImmigrantException {
 		if (Validation.validateString(name)) {
@@ -20,7 +20,7 @@ public abstract class Immigrant {
 			throw new ImmigrantException("Invalid name");
 		}
 		if (Validation.validateNumber(nachalnaSumaPari)) {
-			this.nachalnaSumaPari = nachalnaSumaPari;
+			this.initialAmountMoney = nachalnaSumaPari;
 		} else {
 			throw new ImmigrantException("Invalid money");
 		}
@@ -29,12 +29,18 @@ public abstract class Immigrant {
 	
 	void addRodnina(Immigrant imigrant) throws ImmigrantException {
 		if (Validation.validateObject(imigrant)) {
-			this.rodnini.add(imigrant);
+			this.relatives.add(imigrant);
 		} else {
 			throw new ImmigrantException("Invalid relative");
 		}
 	}
-	
-	
+
+	public String getName() {
+		return name;
+	}
+
+	public float getInitialAmountMoney() {
+		return initialAmountMoney;
+	}
 
 }

@@ -5,9 +5,9 @@ import immigrantsTask.country.Town;
 
 public abstract class PoliceEmployee {
 	
-	String name;
-	Town grad;
-	Country darjawa;
+	private String name;
+	private Town grad;
+	private Country darjawa;
 	
 	public PoliceEmployee(String name, Town grad, Country darjawa) {
 		this.name = name;

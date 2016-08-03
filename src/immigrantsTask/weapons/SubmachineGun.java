@@ -10,7 +10,7 @@ public class SubmachineGun extends Weapon implements IShooting{
 	}
 
 	@Override
-	public int strelqi() throws Exception {
+	public int shoot() throws Exception {
 		// TODO Auto-generated method stub
 		return 0;
 	}

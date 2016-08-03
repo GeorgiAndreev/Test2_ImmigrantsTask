@@ -11,7 +11,7 @@ public class Bomb extends Weapon implements Detonateable{
 	}
 
 	@Override
-	public void vzriviSe() throws VzriviSeBombaException {
+	public void explode() throws VzriviSeBombaException {
 		System.out.println("Bomba se vzrivqvq!");
 		throw new VzriviSeBombaException("Bomba se vzrivi!");
 		

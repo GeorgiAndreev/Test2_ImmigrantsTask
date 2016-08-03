@@ -8,7 +8,7 @@ import immigrantsTask.weapons.Weapon;
 
 public class EkstremistImmigrant extends Immigrant implements IIllegalImmigrant{
 
-	ArrayList<Weapon> orujiq;
+	private ArrayList<Weapon> orujiq;
 
 	public EkstremistImmigrant(String name, float nachalnaSumaPari) throws ImmigrantException {
 		super(name, nachalnaSumaPari);
@@ -17,7 +17,7 @@ public class EkstremistImmigrant extends Immigrant implements IIllegalImmigrant{
 
 	@Override
 	public void kupiSiOrujie(Weapon orujie) throws Exception {
-		if (this.nachalnaSumaPari >= orujie.getPrice()) {
+		if (this.getInitialAmountMoney() >= orujie.getPrice()) {
 			this.orujiq.add(orujie);
 		} else {
 			throw new IllegalImmigrantDiedFromRageException("Nqmam pari da si kupq orujie i umrqh ot qd");

@@ -10,7 +10,7 @@ public class NormalImmigrant extends Immigrant {
 
 	static final byte MAX_BROI_RODNINI = 10;
 	
-	Passport pasport = new Passport(this.name);
+	private Passport pasport = new Passport(this.getName());
 
 	public NormalImmigrant(String name, float nachalnaSumaPari) throws ImmigrantException {
 		super(name, nachalnaSumaPari);
@@ -23,14 +23,14 @@ public class NormalImmigrant extends Immigrant {
 	void addRodnina(Immigrant imigrant) throws ImmigrantException {
 		if (Validation.validateObject(imigrant)) {
 			int numberOfRelativesNow = 0;
-			for (Iterator<Immigrant> iterator = rodnini.iterator(); iterator.hasNext();) {
+			for (Iterator<Immigrant> iterator = relatives.iterator(); iterator.hasNext();) {
 				Immigrant imigrantRodnina = (Immigrant) iterator.next();
 				if (imigrantRodnina != null) {
 					numberOfRelativesNow++;
 				}
 			}
 			if (numberOfRelativesNow < 10) {
-				this.rodnini.add(imigrant);
+				this.relatives.add(imigrant);
 			} else {
 				throw new ImmigrantException("Ne moje pove4e rodnini max 10 moje da sa");
 			}
