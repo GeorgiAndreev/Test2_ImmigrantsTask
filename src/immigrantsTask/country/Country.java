@@ -2,7 +2,7 @@ package immigrantsTask.country;
 
 import java.util.ArrayList;
 
-import immigrantsTask.exceptions.DarjavaException;
+import immigrantsTask.exceptions.CountryException;
 import immigrantsTask.helpClasses.Validation;
 
 public class Country {
@@ -10,20 +10,20 @@ public class Country {
 	private String name;
 	private ArrayList<Town> gradove = new ArrayList();
 	
-	public Country(String name) throws DarjavaException {
+	public Country(String name) throws CountryException {
 		if (Validation.validateString(name)) {
 			this.name = name;
 		} else {
-			throw new DarjavaException("Invalid name");
+			throw new CountryException("Invalid name");
 		}
 		
 	}
 	
-	public void addGrad(Town grad) throws DarjavaException{
+	public void addGrad(Town grad) throws CountryException{
 		if (Validation.validateObject(grad)) {
 			this.gradove.add(grad);
 		} else {
-			throw new DarjavaException("Invalid grad");
+			throw new CountryException("Invalid grad");
 		}
 	}
 

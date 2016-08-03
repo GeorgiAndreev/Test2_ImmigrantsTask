@@ -6,9 +6,9 @@ import immigrantsTask.country.Country;
 import immigrantsTask.country.Town;
 import immigrantsTask.helpClasses.Generation;
 import immigrantsTask.immigrants.EkstremistImmigrant;
-import immigrantsTask.immigrants.NormalenImmigrant;
+import immigrantsTask.immigrants.NormalImmigrant;
 import immigrantsTask.immigrants.Passport;
-import immigrantsTask.immigrants.RadikalenImigrant;
+import immigrantsTask.immigrants.RadikalImmigrant;
 import immigrantsTask.policeEmployees.PoliceOfficer;
 import immigrantsTask.policeEmployees.SpecPoliceOfficer;
 import immigrantsTask.weapons.Bomb;
@@ -52,25 +52,25 @@ public class Demo {
 				sofiq.addPoliceiskiSlujitel(new SpecPoliceOfficer(Generation.generateName(), sofiq, bulgariq));
 			}
 
-			ArrayList<RadikalenImigrant> radikalniImigranti = new ArrayList<>(25);
+			ArrayList<RadikalImmigrant> radikalniImigranti = new ArrayList<>(25);
 			ArrayList<EkstremistImmigrant> ekstremistiImigranti = new ArrayList<>(35);
-			ArrayList<NormalenImmigrant> normalniImigranti = new ArrayList<>(40);
+			ArrayList<NormalImmigrant> normalniImigranti = new ArrayList<>(40);
 
 			for (int index = 0; index < 9; index++) {
 				String name = Generation.generateName();
-				radikalniImigranti.add(new RadikalenImigrant(name, (float) (Math.random() * 100 + 10), new Passport(name)));
+				radikalniImigranti.add(new RadikalImmigrant(name, Generation.generateMoney(400, 1000), new Passport(name)));
 			}
 
 			for (int index = 0; index < 16; index++) {
-				radikalniImigranti.add(new RadikalenImigrant(Generation.generateName(), (float) (Math.random() * 100 + 10)));
+				radikalniImigranti.add(new RadikalImmigrant(Generation.generateName(), Generation.generateMoney(400, 1000)));
 			}
 
 			for (int index = 0; index < 35; index++) {
-				ekstremistiImigranti.add(new EkstremistImmigrant(Generation.generateName(), (float) (Math.random() * 100 + 10)));
+				ekstremistiImigranti.add(new EkstremistImmigrant(Generation.generateName(), Generation.generateMoney(400, 1000)));
 			}
 
 			for (int index = 0; index < 40; index++) {
-				normalniImigranti.add(new NormalenImmigrant(Generation.generateName(), (float) (Math.random() * 100 + 10)));
+				normalniImigranti.add(new NormalImmigrant(Generation.generateName(), Generation.generateMoney(400, 1000)));
 			}
 
 			byte broiBombi = (byte) (Math.random() * 70 + 1);
@@ -82,13 +82,13 @@ public class Demo {
 			ArrayList<SubmachineGun> avtomati = new ArrayList<>(broiAvtomati);
 
 			for (int index = 0; index < broiBombi; index++) {
-				bombi.add(new Bomb((float) (Math.random() * 100 + 50)));
+				bombi.add(new Bomb(Generation.generateMoney(300, 900)));
 			}
 			for (int index = 0; index < broiPistoleti; index++) {
-				pistoleti.add(new Pistol((float) (Math.random() * 100 + 50)));
+				pistoleti.add(new Pistol(Generation.generateMoney(300, 900)));
 			}
 			for (int index = 0; index < broiAvtomati; index++) {
-				avtomati.add(new SubmachineGun((float) (Math.random() * 100 + 50)));
+				avtomati.add(new SubmachineGun(Generation.generateMoney(300, 900)));
 			}
 
 			ArrayList<Weapon> orujiq = new ArrayList<>(broiAvtomati + broiBombi + broiPistoleti);

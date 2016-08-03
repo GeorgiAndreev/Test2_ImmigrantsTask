@@ -1,10 +1,10 @@
 package immigrantsTask.weapons;
 
-import immigrantsTask.exceptions.OrujieException;
+import immigrantsTask.exceptions.WeaponException;
 
 public class Pistol extends Weapon implements IShooting{
 
-	public Pistol(float price) throws OrujieException {
+	public Pistol(float price) throws WeaponException {
 		super(price);
 		// TODO Auto-generated constructor stub
 	}

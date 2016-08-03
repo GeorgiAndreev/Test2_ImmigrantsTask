@@ -2,15 +2,15 @@ package immigrantsTask.immigrants;
 
 import java.util.ArrayList;
 
-import immigrantsTask.exceptions.ImigrantException;
-import immigrantsTask.exceptions.UmrqhOtQdException;
+import immigrantsTask.exceptions.ImmigrantException;
+import immigrantsTask.exceptions.IllegalImmigrantDiedFromRageException;
 import immigrantsTask.weapons.Weapon;
 
-public class EkstremistImmigrant extends Immigrant implements INelegalenImmigrant{
+public class EkstremistImmigrant extends Immigrant implements IIllegalImmigrant{
 
 	ArrayList<Weapon> orujiq;
 
-	public EkstremistImmigrant(String name, float nachalnaSumaPari) throws ImigrantException {
+	public EkstremistImmigrant(String name, float nachalnaSumaPari) throws ImmigrantException {
 		super(name, nachalnaSumaPari);
 		// TODO Auto-generated constructor stub
 	}
@@ -20,7 +20,7 @@ public class EkstremistImmigrant extends Immigrant implements INelegalenImmigran
 		if (this.nachalnaSumaPari >= orujie.getPrice()) {
 			this.orujiq.add(orujie);
 		} else {
-			throw new UmrqhOtQdException("Nqmam pari da si kupq orujie i umrqh ot qd");
+			throw new IllegalImmigrantDiedFromRageException("Nqmam pari da si kupq orujie i umrqh ot qd");
 		}
 		
 	}

@@ -2,8 +2,8 @@ package immigrantsTask.country;
 
 import java.util.ArrayList;
 
-import immigrantsTask.exceptions.DarjavaException;
-import immigrantsTask.exceptions.GradException;
+import immigrantsTask.exceptions.CountryException;
+import immigrantsTask.exceptions.TownException;
 import immigrantsTask.helpClasses.Validation;
 import immigrantsTask.immigrants.Immigrant;
 import immigrantsTask.policeEmployees.PoliceEmployee;
@@ -16,32 +16,32 @@ public class Town {
 	private long broiJiteli;
 	private ArrayList<Immigrant> imigranti;
 	
-	public Town(String name, long broiJiteli) throws GradException {
+	public Town(String name, long broiJiteli) throws TownException {
 		if (Validation.validateString(name)) {
 			this.name = name;
 		} else {
-			throw new GradException("Invalid name.");
+			throw new TownException("Invalid name.");
 		}
 		if (Validation.validateNumber(broiJiteli)) {
 			this.broiJiteli = broiJiteli;
 		} else {
-			throw new GradException("Invalid broi jiteli.");
+			throw new TownException("Invalid broi jiteli.");
 		}	
 	}
 	
-	public void addImigrant(Immigrant imigrant) throws GradException {
+	public void addImigrant(Immigrant imigrant) throws TownException {
 		if (Validation.validateObject(imigrant)) {
 			this.imigranti.add(imigrant);
 		} else {
-			throw new GradException("Invalid imigrant");
+			throw new TownException("Invalid imigrant");
 		}
 	}
 	
-    public void addPoliceiskiSlujitel(PoliceEmployee policeiskiSlujitel) throws GradException {
+    public void addPoliceiskiSlujitel(PoliceEmployee policeiskiSlujitel) throws TownException {
     	if (Validation.validateObject(policeiskiSlujitel)) {
 			this.policeiskiSlujiteli.add(policeiskiSlujitel);
 		} else {
-			throw new GradException("Invalid policeiski slujitel");
+			throw new TownException("Invalid policeiski slujitel");
 		}
 		
 	}

@@ -1,6 +1,6 @@
 package immigrantsTask.weapons;
 
-import immigrantsTask.exceptions.OrujieException;
+import immigrantsTask.exceptions.WeaponException;
 import immigrantsTask.helpClasses.Validation;
 
 public abstract class Weapon {
@@ -8,11 +8,11 @@ public abstract class Weapon {
 	float price;
 	boolean isSold;
 	
-	public Weapon(float price) throws OrujieException {
+	public Weapon(float price) throws WeaponException {
 		if (Validation.validateNumber(price)) {
 			this.price = price;
 		} else {
-			throw new OrujieException("Invalid price");
+			throw new WeaponException("Invalid price");
 		}
 	}
 	

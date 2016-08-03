@@ -12,8 +12,12 @@ public abstract class Generation {
 		    char c = chars[random.nextInt(chars.length)];
 		    sb.append(c);
 		}
-		String output = sb.toString();
-		return output;
+		String randomString = sb.toString();
+		return randomString;
+	}
+	
+	public static float generateMoney(int min, int max) {
+		return (float)(min + (Math.random() * ((max - min) + 1)));
 	}
 
 }

@@ -3,16 +3,16 @@ package immigrantsTask.immigrants;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import immigrantsTask.exceptions.ImigrantException;
+import immigrantsTask.exceptions.ImmigrantException;
 import immigrantsTask.helpClasses.Validation;
 
-public class NormalenImmigrant extends Immigrant {
+public class NormalImmigrant extends Immigrant {
 
 	static final byte MAX_BROI_RODNINI = 10;
 	
 	Passport pasport = new Passport(this.name);
 
-	public NormalenImmigrant(String name, float nachalnaSumaPari) throws ImigrantException {
+	public NormalImmigrant(String name, float nachalnaSumaPari) throws ImmigrantException {
 		super(name, nachalnaSumaPari);
 		
 		// TODO Auto-generated constructor stub
@@ -20,7 +20,7 @@ public class NormalenImmigrant extends Immigrant {
 
 	
 	@Override
-	void addRodnina(Immigrant imigrant) throws ImigrantException {
+	void addRodnina(Immigrant imigrant) throws ImmigrantException {
 		if (Validation.validateObject(imigrant)) {
 			int numberOfRelativesNow = 0;
 			for (Iterator<Immigrant> iterator = rodnini.iterator(); iterator.hasNext();) {
@@ -32,11 +32,11 @@ public class NormalenImmigrant extends Immigrant {
 			if (numberOfRelativesNow < 10) {
 				this.rodnini.add(imigrant);
 			} else {
-				throw new ImigrantException("Ne moje pove4e rodnini max 10 moje da sa");
+				throw new ImmigrantException("Ne moje pove4e rodnini max 10 moje da sa");
 			}
 			
 		} else {
-			throw new ImigrantException("Invalid relative");
+			throw new ImmigrantException("Invalid relative");
 		}
 	}
 	

@@ -1,11 +1,11 @@
 package immigrantsTask.weapons;
 
-import immigrantsTask.exceptions.OrujieException;
+import immigrantsTask.exceptions.WeaponException;
 import immigrantsTask.exceptions.VzriviSeBombaException;
 
 public class Bomb extends Weapon implements Detonateable{
 
-	public Bomb(float price) throws OrujieException {
+	public Bomb(float price) throws WeaponException {
 		super(price);
 		// TODO Auto-generated constructor stub
 	}

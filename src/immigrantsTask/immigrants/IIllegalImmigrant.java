@@ -2,7 +2,7 @@ package immigrantsTask.immigrants;
 
 import immigrantsTask.weapons.Weapon;
 
-public interface INelegalenImmigrant {
+public interface IIllegalImmigrant {
 	
 	void kupiSiOrujie(Weapon orujie) throws Exception;
 	void strelqiPoHora() throws Exception;
