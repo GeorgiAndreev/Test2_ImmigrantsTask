@@ -1,6 +1,7 @@
 package immigrantsTask.immigrants;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import immigrantsTask.country.Town;
 import immigrantsTask.exceptions.ImmigrantException;
@@ -10,26 +11,51 @@ public abstract class Immigrant {
 	
 	private String name;
 	private float initialAmountMoney;
-	private Town grad;
+	private Town currentTown;
 	protected ArrayList<Immigrant> relatives;
 	
-	public Immigrant(String name, float nachalnaSumaPari) throws ImmigrantException {
+	public void showImmigrantInfo() {
+		System.out.println("lives currently in " + this.currentTown + ",");
+		System.out.println("has " + this.getInitialAmountMoney() + "euros,");
+		boolean hasRelatives = false;
+		for (Iterator<Immigrant> iterator = relatives.iterator(); iterator.hasNext();) {
+			Immigrant relative = (Immigrant) iterator.next();
+			if (relative != null) {
+				hasRelatives = true;
+				break;
+			}
+		}
+		if (hasRelatives) {
+			System.out.println("and has these relatives:");
+			for (Iterator<Immigrant> iterator = relatives.iterator(); iterator.hasNext();) {
+				Immigrant relative = (Immigrant) iterator.next();
+				if (relative != null) {
+					System.out.print(relative.getName() + "; ");
+				}
+			}
+		}
+		if (!hasRelatives) {
+			System.out.println("and has no relatives.");
+		}
+	}
+	
+	public Immigrant(String name, float initialAmountMoney) throws ImmigrantException {
 		if (Validation.validateString(name)) {
 			this.name = name;
 		} else {
-			throw new ImmigrantException("Invalid name");
+			throw new ImmigrantException("Invalid name.");
 		}
-		if (Validation.validateNumber(nachalnaSumaPari)) {
-			this.initialAmountMoney = nachalnaSumaPari;
+		if (Validation.validateNumber(initialAmountMoney)) {
+			this.initialAmountMoney = initialAmountMoney;
 		} else {
-			throw new ImmigrantException("Invalid money");
+			throw new ImmigrantException("Invalid money.");
 		}
 		
 	}
 	
-	void addRodnina(Immigrant imigrant) throws ImmigrantException {
-		if (Validation.validateObject(imigrant)) {
-			this.relatives.add(imigrant);
+	public void addRelative(Immigrant relative) throws ImmigrantException {
+		if (Validation.validateObject(relative)) {
+			this.relatives.add(relative);
 		} else {
 			throw new ImmigrantException("Invalid relative");
 		}
@@ -42,5 +68,6 @@ public abstract class Immigrant {
 	public float getInitialAmountMoney() {
 		return initialAmountMoney;
 	}
+	
 
 }

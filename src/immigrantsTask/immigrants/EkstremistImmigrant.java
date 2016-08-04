@@ -1,12 +1,13 @@
 package immigrantsTask.immigrants;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import immigrantsTask.exceptions.ImmigrantException;
 import immigrantsTask.exceptions.IllegalImmigrantDiedFromRageException;
 import immigrantsTask.weapons.Weapon;
 
-public class EkstremistImmigrant extends Immigrant implements IIllegalImmigrant{
+public class EkstremistImmigrant extends Immigrant implements IIllegalImmigrant {
 
 	private ArrayList<Weapon> weapons;
 
@@ -23,15 +24,20 @@ public class EkstremistImmigrant extends Immigrant implements IIllegalImmigrant{
 		if (this.getInitialAmountMoney() >= weapon.getPrice()) {
 			this.weapons.add(weapon);
 		} else {
-			throw new IllegalImmigrantDiedFromRageException("Immigrant had not enough money to buy weapon and died from rage.");
+			throw new IllegalImmigrantDiedFromRageException(
+					"Immigrant had not enough money to buy weapon and died from rage.");
 		}
 	}
 
 	@Override
 	public void shootAtPeople() throws Exception {
-		
-		
-		
+
+	}
+
+	@Override
+	public void showImmigrantInfo() {
+		System.out.println("This immigrant has no passport,");
+		super.showImmigrantInfo();
 	}
 
 }

@@ -20,7 +20,7 @@ public class NormalImmigrant extends Immigrant {
 
 	
 	@Override
-	void addRodnina(Immigrant immigrant) throws ImmigrantException {
+	public void addRelative(Immigrant immigrant) throws ImmigrantException {
 		if (Validation.validateObject(immigrant)) {
 			int currentNumberOfRelatives = 0;
 			for (Iterator<Immigrant> iterator = relatives.iterator(); iterator.hasNext();) {
@@ -38,6 +38,13 @@ public class NormalImmigrant extends Immigrant {
 		} else {
 			throw new ImmigrantException("Invalid relative.");
 		}
+	}
+
+
+	@Override
+	public void showImmigrantInfo() {
+		System.out.println("This immigrant has passport,");
+		super.showImmigrantInfo();
 	}
 	
 
