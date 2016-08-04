@@ -8,8 +8,7 @@ import immigrantsTask.country.Town;
 import immigrantsTask.exceptions.ImmigrantException;
 import immigrantsTask.helpClasses.Validation;
 
-@SuppressWarnings("rawtypes")
-public abstract class Immigrant implements Comparable{
+public abstract class Immigrant implements Comparable<Immigrant>{
 	
 	private String name;
 	private float initialAmountMoney;
@@ -84,7 +83,7 @@ public abstract class Immigrant implements Comparable{
 	}
 
 	@Override
-	public int compareTo(Object immigrant) {
+	public int compareTo(Immigrant immigrant) {
 		return this.getName().compareTo(((Immigrant) immigrant).getName());
 	}
 	
