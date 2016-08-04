@@ -14,6 +14,20 @@ public abstract class Immigrant {
 	private Town currentTown;
 	protected ArrayList<Immigrant> relatives;
 	
+	public Immigrant(String name, float initialAmountMoney) throws ImmigrantException {
+		if (Validation.validateString(name)) {
+			this.name = name;
+		} else {
+			throw new ImmigrantException("Invalid name.");
+		}
+		if (Validation.validateNumber(initialAmountMoney)) {
+			this.initialAmountMoney = initialAmountMoney;
+		} else {
+			throw new ImmigrantException("Invalid money.");
+		}
+		this.relatives = new ArrayList<>();
+	}
+	
 	public void showImmigrantInfo() {
 		System.out.println("lives currently in " + this.currentTown + ",");
 		System.out.println("has " + this.getInitialAmountMoney() + "euros,");
@@ -37,20 +51,6 @@ public abstract class Immigrant {
 		if (!hasRelatives) {
 			System.out.println("and has no relatives.");
 		}
-	}
-	
-	public Immigrant(String name, float initialAmountMoney) throws ImmigrantException {
-		if (Validation.validateString(name)) {
-			this.name = name;
-		} else {
-			throw new ImmigrantException("Invalid name.");
-		}
-		if (Validation.validateNumber(initialAmountMoney)) {
-			this.initialAmountMoney = initialAmountMoney;
-		} else {
-			throw new ImmigrantException("Invalid money.");
-		}
-		
 	}
 	
 	public void addRelative(Immigrant relative) throws ImmigrantException {

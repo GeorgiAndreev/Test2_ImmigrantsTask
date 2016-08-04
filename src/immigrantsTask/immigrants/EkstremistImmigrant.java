@@ -13,6 +13,7 @@ public class EkstremistImmigrant extends Immigrant implements IIllegalImmigrant 
 
 	public EkstremistImmigrant(String name, float nachalnaSumaPari) throws ImmigrantException {
 		super(name, nachalnaSumaPari);
+		this.weapons = new ArrayList<>();
 	}
 
 	@Override

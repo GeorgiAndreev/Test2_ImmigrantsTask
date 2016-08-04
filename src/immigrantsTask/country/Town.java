@@ -27,6 +27,7 @@ public class Town {
 		} else {
 			throw new TownException("Invalid number of inhabitants.");
 		}	
+		this.policeEmployees = new ArrayList();
 	}
 	
 	public void addImigrant(Immigrant immigrant) throws TownException {

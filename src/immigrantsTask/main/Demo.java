@@ -10,6 +10,7 @@ import immigrantsTask.exceptions.ImmigrantException;
 import immigrantsTask.helpClasses.Generation;
 import immigrantsTask.helpClasses.Validation;
 import immigrantsTask.immigrants.EkstremistImmigrant;
+import immigrantsTask.immigrants.IIllegalImmigrant;
 import immigrantsTask.immigrants.Immigrant;
 import immigrantsTask.immigrants.NormalImmigrant;
 import immigrantsTask.immigrants.Passport;
@@ -31,7 +32,8 @@ public class Demo {
 			} else {
 				for (int index = 0; index < immigrants.size() / 2; index++) {
 					immigrants.get(index).addRelative(immigrants.get(immigrants.size() - index - 1));
-					//immigrants.get(immigrants.size() - index - 1).addRelative(immigrants.get(index));
+					// immigrants.get(immigrants.size() - index -
+					// 1).addRelative(immigrants.get(index));
 				}
 				for (int index = 0; index < immigrants.size() - 1; index++) {
 					if (index == immigrants.size() / 2) {
@@ -61,13 +63,12 @@ public class Demo {
 			bulgariq.addTown(smolqn);
 			bulgariq.addTown(sofiq);
 
-			for (int index = 0; index < 10000; index++) {
+			for (int index = 0; index < 1000; index++) {
 				pleven.addPoliceEmployee(new PoliceOfficer(Generation.generateName(), pleven, bulgariq));
 				varna.addPoliceEmployee(new PoliceOfficer(Generation.generateName(), varna, bulgariq));
 				burgas.addPoliceEmployee(new PoliceOfficer(Generation.generateName(), burgas, bulgariq));
 				smolqn.addPoliceEmployee(new PoliceOfficer(Generation.generateName(), smolqn, bulgariq));
 				sofiq.addPoliceEmployee(new PoliceOfficer(Generation.generateName(), sofiq, bulgariq));
-
 			}
 			for (int index = 0; index < 400; index++) {
 				pleven.addPoliceEmployee(new SpecPoliceOfficer(Generation.generateName(), pleven, bulgariq));
@@ -85,33 +86,34 @@ public class Demo {
 			for (int index = 0; index < 9; index++) {
 				String name = Generation.generateName();
 				radikalImmigrants
-						.add(new RadikalImmigrant(name, Generation.generateMoney(400, 1000), new Passport(name)));
+						.add(new RadikalImmigrant(name, Generation.generateMoney(850, 4000), new Passport(name)));
 			}
 
 			for (int index = 0; index < 16; index++) {
 				radikalImmigrants
-						.add(new RadikalImmigrant(Generation.generateName(), Generation.generateMoney(400, 1000)));
+						.add(new RadikalImmigrant(Generation.generateName(), Generation.generateMoney(850, 4000)));
 			}
 
 			for (int index = 0; index < 35; index++) {
 				ekstremistImmigrants
-						.add(new EkstremistImmigrant(Generation.generateName(), Generation.generateMoney(400, 1000)));
+						.add(new EkstremistImmigrant(Generation.generateName(), Generation.generateMoney(850, 4000)));
 			}
 
 			for (int index = 0; index < 40; index++) {
-				normalImmigrants.add(new NormalImmigrant(Generation.generateName(), Generation.generateMoney(400, 1000)));
+				normalImmigrants
+						.add(new NormalImmigrant(Generation.generateName(), Generation.generateMoney(400, 1000)));
 			}
 
 			immigrants.addAll(normalImmigrants);
 			immigrants.addAll(radikalImmigrants);
 			immigrants.addAll(ekstremistImmigrants);
 			Collections.shuffle(immigrants);
-			
+
 			addTwoRelativesToImmigrants(immigrants);
 
-			byte numberOfBombs = (byte) (Math.random() * 70 + 1);
-			byte numberOfPistols = (byte) (Math.random() * 70 + 1);
-			byte numberOfSubmachineGuns = (byte) (200 - numberOfBombs - numberOfPistols);
+			int numberOfBombs = Generation.generateInteger(0, 70);
+			int numberOfPistols = Generation.generateInteger(0, 70);
+			int numberOfSubmachineGuns = (int) (200 - numberOfBombs - numberOfPistols);
 
 			ArrayList<Bomb> bombs = new ArrayList<>(numberOfBombs);
 			ArrayList<Pistol> pistols = new ArrayList<>(numberOfPistols);
@@ -132,6 +134,14 @@ public class Demo {
 			weapons.addAll(pistols);
 			weapons.addAll(bombs);
 			Collections.shuffle(weapons);
+
+			for (Iterator<Immigrant> iterator = immigrants.iterator(); iterator.hasNext();) {
+				Immigrant immigrant = (Immigrant) iterator.next();
+				if (immigrant instanceof IIllegalImmigrant) {
+					int indexOfWeapon = Generation.generateInteger(0, weapons.size() - 1);
+					((IIllegalImmigrant) immigrant).buyWeapon(weapons.get(indexOfWeapon));
+				}
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();

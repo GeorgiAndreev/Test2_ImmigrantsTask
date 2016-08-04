@@ -17,6 +17,7 @@ public class RadikalImmigrant extends Immigrant implements IIllegalImmigrant{
 	
 	public RadikalImmigrant(String name, float initialAmountMoney) throws ImmigrantException {
 		super(name, initialAmountMoney);
+		this.weapons = new ArrayList<>();
 	}
 	
 	public RadikalImmigrant(String name, float nachalnaSumaPari, Passport passport) throws ImmigrantException {
@@ -26,6 +27,7 @@ public class RadikalImmigrant extends Immigrant implements IIllegalImmigrant{
 		} else {
 			throw new ImmigrantException("Invalid passport.");
 		}
+		this.weapons = new ArrayList<>();
 	}
 	
 	void detonateBomb(){
