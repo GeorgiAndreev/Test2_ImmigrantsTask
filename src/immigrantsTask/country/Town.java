@@ -37,11 +37,11 @@ public class Town {
 		}
 	}
 	
-    public void addPoliceiskiSlujitel(PoliceEmployee policeEmployee) throws TownException {
+    public void addPoliceEmployee(PoliceEmployee policeEmployee) throws TownException {
     	if (Validation.validateObject(policeEmployee)) {
 			this.policeEmployees.add(policeEmployee);
 		} else {
-			throw new TownException("Invalid policeiski slujitel");
+			throw new TownException("Invalid police employee.");
 		}
 		
 	}

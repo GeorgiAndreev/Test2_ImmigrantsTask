@@ -30,71 +30,73 @@ public class Demo {
 
 			Country bulgariq = new Country("Bulgariq");
 
-			bulgariq.addGrad(pleven);
-			bulgariq.addGrad(varna);
-			bulgariq.addGrad(burgas);
-			bulgariq.addGrad(smolqn);
-			bulgariq.addGrad(sofiq);
+			bulgariq.addTown(pleven);
+			bulgariq.addTown(varna);
+			bulgariq.addTown(burgas);
+			bulgariq.addTown(smolqn);
+			bulgariq.addTown(sofiq);
 
 			for (int index = 0; index < 10000; index++) {
-				pleven.addPoliceiskiSlujitel(new PoliceOfficer(Generation.generateName(), pleven, bulgariq));
-				varna.addPoliceiskiSlujitel(new PoliceOfficer(Generation.generateName(), varna, bulgariq));
-				burgas.addPoliceiskiSlujitel(new PoliceOfficer(Generation.generateName(), burgas, bulgariq));
-				smolqn.addPoliceiskiSlujitel(new PoliceOfficer(Generation.generateName(), smolqn, bulgariq));
-				sofiq.addPoliceiskiSlujitel(new PoliceOfficer(Generation.generateName(), sofiq, bulgariq));
+				pleven.addPoliceEmployee(new PoliceOfficer(Generation.generateName(), pleven, bulgariq));
+				varna.addPoliceEmployee(new PoliceOfficer(Generation.generateName(), varna, bulgariq));
+				burgas.addPoliceEmployee(new PoliceOfficer(Generation.generateName(), burgas, bulgariq));
+				smolqn.addPoliceEmployee(new PoliceOfficer(Generation.generateName(), smolqn, bulgariq));
+				sofiq.addPoliceEmployee(new PoliceOfficer(Generation.generateName(), sofiq, bulgariq));
 
 			}
 			for (int index = 0; index < 400; index++) {
-				pleven.addPoliceiskiSlujitel(new SpecPoliceOfficer(Generation.generateName(), pleven, bulgariq));
-				varna.addPoliceiskiSlujitel(new SpecPoliceOfficer(Generation.generateName(), varna, bulgariq));
-				burgas.addPoliceiskiSlujitel(new SpecPoliceOfficer(Generation.generateName(), burgas, bulgariq));
-				smolqn.addPoliceiskiSlujitel(new SpecPoliceOfficer(Generation.generateName(), smolqn, bulgariq));
-				sofiq.addPoliceiskiSlujitel(new SpecPoliceOfficer(Generation.generateName(), sofiq, bulgariq));
+				pleven.addPoliceEmployee(new SpecPoliceOfficer(Generation.generateName(), pleven, bulgariq));
+				varna.addPoliceEmployee(new SpecPoliceOfficer(Generation.generateName(), varna, bulgariq));
+				burgas.addPoliceEmployee(new SpecPoliceOfficer(Generation.generateName(), burgas, bulgariq));
+				smolqn.addPoliceEmployee(new SpecPoliceOfficer(Generation.generateName(), smolqn, bulgariq));
+				sofiq.addPoliceEmployee(new SpecPoliceOfficer(Generation.generateName(), sofiq, bulgariq));
 			}
 
-			ArrayList<RadikalImmigrant> radikalniImigranti = new ArrayList<>(25);
-			ArrayList<EkstremistImmigrant> ekstremistiImigranti = new ArrayList<>(35);
-			ArrayList<NormalImmigrant> normalniImigranti = new ArrayList<>(40);
+			ArrayList<RadikalImmigrant> radikalImmigrants = new ArrayList<>(25);
+			ArrayList<EkstremistImmigrant> ekstremistImmigrants = new ArrayList<>(35);
+			ArrayList<NormalImmigrant> normalImmigrants = new ArrayList<>(40);
 
 			for (int index = 0; index < 9; index++) {
 				String name = Generation.generateName();
-				radikalniImigranti.add(new RadikalImmigrant(name, Generation.generateMoney(400, 1000), new Passport(name)));
+				radikalImmigrants.add(new RadikalImmigrant(name, Generation.generateMoney(400, 1000), new Passport(name)));
 			}
 
 			for (int index = 0; index < 16; index++) {
-				radikalniImigranti.add(new RadikalImmigrant(Generation.generateName(), Generation.generateMoney(400, 1000)));
+				radikalImmigrants.add(new RadikalImmigrant(Generation.generateName(), Generation.generateMoney(400, 1000)));
 			}
 
 			for (int index = 0; index < 35; index++) {
-				ekstremistiImigranti.add(new EkstremistImmigrant(Generation.generateName(), Generation.generateMoney(400, 1000)));
+				ekstremistImmigrants.add(new EkstremistImmigrant(Generation.generateName(), Generation.generateMoney(400, 1000)));
 			}
 
 			for (int index = 0; index < 40; index++) {
-				normalniImigranti.add(new NormalImmigrant(Generation.generateName(), Generation.generateMoney(400, 1000)));
+				normalImmigrants.add(new NormalImmigrant(Generation.generateName(), Generation.generateMoney(400, 1000)));
 			}
 
-			byte broiBombi = (byte) (Math.random() * 70 + 1);
-			byte broiPistoleti = (byte) (Math.random() * 70 + 1);
-			byte broiAvtomati = (byte) (200 - broiBombi - broiPistoleti);
+			byte numberOfBombs = (byte) (Math.random() * 70 + 1);
+			byte numberOfPistols = (byte) (Math.random() * 70 + 1);
+			byte numberOfSubmachineGuns = (byte) (200 - numberOfBombs - numberOfPistols);
 
-			ArrayList<Bomb> bombi = new ArrayList<>(broiAvtomati);
-			ArrayList<Pistol> pistoleti = new ArrayList<>(broiAvtomati);
-			ArrayList<SubmachineGun> avtomati = new ArrayList<>(broiAvtomati);
+			ArrayList<Bomb> bombs = new ArrayList<>(numberOfBombs);
+			ArrayList<Pistol> pistols = new ArrayList<>(numberOfPistols);
+			ArrayList<SubmachineGun> submachineGuns = new ArrayList<>(numberOfSubmachineGuns);
 
-			for (int index = 0; index < broiBombi; index++) {
-				bombi.add(new Bomb(Generation.generateMoney(300, 900)));
+			for (int index = 0; index < numberOfBombs; index++) {
+				bombs.add(new Bomb(Generation.generateMoney(300, 900)));
 			}
-			for (int index = 0; index < broiPistoleti; index++) {
-				pistoleti.add(new Pistol(Generation.generateMoney(300, 900)));
+			for (int index = 0; index < numberOfPistols; index++) {
+				pistols.add(new Pistol(Generation.generateMoney(300, 900)));
 			}
-			for (int index = 0; index < broiAvtomati; index++) {
-				avtomati.add(new SubmachineGun(Generation.generateMoney(300, 900)));
+			for (int index = 0; index < numberOfSubmachineGuns; index++) {
+				submachineGuns.add(new SubmachineGun(Generation.generateMoney(300, 900)));
 			}
 
-			ArrayList<Weapon> orujiq = new ArrayList<>(broiAvtomati + broiBombi + broiPistoleti);
-			orujiq.addAll(avtomati);
-			orujiq.addAll(pistoleti);
-			orujiq.addAll(bombi);
+			ArrayList<Weapon> weapons = new ArrayList<>(numberOfSubmachineGuns + numberOfBombs + numberOfPistols);
+			weapons.addAll(submachineGuns);
+			weapons.addAll(pistols);
+			weapons.addAll(bombs);
+			
+			
 
 		} catch (Exception e) {
 			// TODO: handle exception

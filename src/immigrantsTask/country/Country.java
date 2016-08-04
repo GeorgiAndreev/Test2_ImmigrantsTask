@@ -19,7 +19,7 @@ public class Country {
 		
 	}
 	
-	public void addGrad(Town town) throws CountryException{
+	public void addTown(Town town) throws CountryException{
 		if (Validation.validateObject(town)) {
 			this.towns.add(town);
 		} else {

@@ -29,10 +29,6 @@ public abstract class PoliceEmployee {
 		}
 	}
 	
-	//public PoliceiskiSlujitel(String name) {
-	//	this.name = name;
-	//}
-	
 	
 
 }
