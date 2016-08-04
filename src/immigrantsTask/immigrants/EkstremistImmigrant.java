@@ -37,7 +37,7 @@ public class EkstremistImmigrant extends Immigrant implements IIllegalImmigrant 
 
 	@Override
 	public void showImmigrantInfo() {
-		System.out.println("This immigrant has no passport,");
+		System.out.println("\nThis immigrant has no passport,");
 		super.showImmigrantInfo();
 	}
 

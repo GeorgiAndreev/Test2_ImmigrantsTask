@@ -2,17 +2,19 @@ package immigrantsTask.immigrants;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.TreeSet;
 
 import immigrantsTask.country.Town;
 import immigrantsTask.exceptions.ImmigrantException;
 import immigrantsTask.helpClasses.Validation;
 
-public abstract class Immigrant {
+@SuppressWarnings("rawtypes")
+public abstract class Immigrant implements Comparable{
 	
 	private String name;
 	private float initialAmountMoney;
 	private Town currentTown;
-	protected ArrayList<Immigrant> relatives;
+	protected TreeSet<Immigrant> relatives;
 	
 	public Immigrant(String name, float initialAmountMoney) throws ImmigrantException {
 		if (Validation.validateString(name)) {
@@ -25,12 +27,12 @@ public abstract class Immigrant {
 		} else {
 			throw new ImmigrantException("Invalid money.");
 		}
-		this.relatives = new ArrayList<>();
+		this.relatives = new TreeSet<>();
 	}
 	
 	public void showImmigrantInfo() {
 		System.out.println("lives currently in " + this.currentTown + ",");
-		System.out.println("has " + this.getInitialAmountMoney() + "euros,");
+		System.out.println("has " + this.getInitialAmountMoney() + " euros,");
 		boolean hasRelatives = false;
 		for (Iterator<Immigrant> iterator = relatives.iterator(); iterator.hasNext();) {
 			Immigrant relative = (Immigrant) iterator.next();
@@ -40,7 +42,7 @@ public abstract class Immigrant {
 			}
 		}
 		if (hasRelatives) {
-			System.out.println("and has these relatives:");
+			System.out.print("and has these relatives: ");
 			for (Iterator<Immigrant> iterator = relatives.iterator(); iterator.hasNext();) {
 				Immigrant relative = (Immigrant) iterator.next();
 				if (relative != null) {
@@ -49,7 +51,7 @@ public abstract class Immigrant {
 			}
 		}
 		if (!hasRelatives) {
-			System.out.println("and has no relatives.");
+			System.out.print("and has no relatives.");
 		}
 	}
 	
@@ -80,6 +82,10 @@ public abstract class Immigrant {
 	public float getInitialAmountMoney() {
 		return initialAmountMoney;
 	}
-	
 
+	@Override
+	public int compareTo(Object immigrant) {
+		return this.getName().compareTo(((Immigrant) immigrant).getName());
+	}
+	
 }

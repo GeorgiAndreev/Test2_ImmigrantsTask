@@ -27,19 +27,16 @@ public class Demo {
 	public static void addTwoRelativesToImmigrants(ArrayList<Immigrant> immigrants) throws ImmigrantException {
 		if (Validation.validateObject(immigrants)) {
 			if (immigrants.size() % 2 == 1) {
-				System.out.println("Method works only for even arraylist.");
+				System.out.println("This method works only for even arraylist.");
 				return;
 			} else {
-				for (int index = 0; index < immigrants.size() / 2; index++) {
+				for (int index = 0; index < immigrants.size() / 2; index ++) {
 					immigrants.get(index).addRelative(immigrants.get(immigrants.size() - index - 1));
-					// immigrants.get(immigrants.size() - index -
-					// 1).addRelative(immigrants.get(index));
+					immigrants.get(immigrants.size() - index - 1).addRelative(immigrants.get(index));
 				}
-				for (int index = 0; index < immigrants.size() - 1; index++) {
-					if (index == immigrants.size() / 2) {
-						continue;
-					}
+				for (int index = 0; index < immigrants.size(); index += 2) {
 					immigrants.get(index).addRelative(immigrants.get(index + 1));
+					immigrants.get(index + 1).addRelative(immigrants.get(index));
 				}
 			}
 		}
@@ -141,6 +138,13 @@ public class Demo {
 					int indexOfWeapon = Generation.generateInteger(0, weapons.size() - 1);
 					((IIllegalImmigrant) immigrant).buyWeapon(weapons.get(indexOfWeapon));
 				}
+			}
+			int count = 1;
+			for (Iterator<Immigrant> iterator = immigrants.iterator(); iterator.hasNext();) {
+				Immigrant immigrant = (Immigrant) iterator.next();
+				System.out.println("\n" + (count++));
+				immigrant.showImmigrantInfo();
+				System.out.println();
 			}
 
 		} catch (Exception e) {
