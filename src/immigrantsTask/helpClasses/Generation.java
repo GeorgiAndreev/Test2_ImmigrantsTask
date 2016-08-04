@@ -19,5 +19,9 @@ public abstract class Generation {
 	public static float generateMoney(int min, int max) {
 		return (float)(min + (Math.random() * ((max - min) + 1)));
 	}
+	
+	public static int generateInteger(int min, int max) {
+		return (int)(min + (Math.random() * ((max - min) + 1)));
+	}
 
 }

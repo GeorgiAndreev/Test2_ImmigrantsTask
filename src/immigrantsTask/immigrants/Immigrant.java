@@ -56,9 +56,21 @@ public abstract class Immigrant {
 	public void addRelative(Immigrant relative) throws ImmigrantException {
 		if (Validation.validateObject(relative)) {
 			this.relatives.add(relative);
+			relative.relatives.add(this);
 		} else {
 			throw new ImmigrantException("Invalid relative");
 		}
+	}
+	
+	public int getNumberOfRelatives() {
+		int numberOfRelatives =0;
+		for (Iterator<Immigrant> iterator = relatives.iterator(); iterator.hasNext();) {
+			Immigrant immigrant = (Immigrant) iterator.next();
+			if(immigrant != null) {
+				numberOfRelatives++;
+			}
+		}
+		return numberOfRelatives;
 	}
 
 	public String getName() {

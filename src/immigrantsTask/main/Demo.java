@@ -1,11 +1,16 @@
 package immigrantsTask.main;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
 
 import immigrantsTask.country.Country;
 import immigrantsTask.country.Town;
+import immigrantsTask.exceptions.ImmigrantException;
 import immigrantsTask.helpClasses.Generation;
+import immigrantsTask.helpClasses.Validation;
 import immigrantsTask.immigrants.EkstremistImmigrant;
+import immigrantsTask.immigrants.Immigrant;
 import immigrantsTask.immigrants.NormalImmigrant;
 import immigrantsTask.immigrants.Passport;
 import immigrantsTask.immigrants.RadikalImmigrant;
@@ -17,6 +22,26 @@ import immigrantsTask.weapons.SubmachineGun;
 import immigrantsTask.weapons.Weapon;
 
 public class Demo {
+
+	public static void addTwoRelativesToImmigrants(ArrayList<Immigrant> immigrants) throws ImmigrantException {
+		if (Validation.validateObject(immigrants)) {
+			if (immigrants.size() % 2 == 1) {
+				System.out.println("Method works only for even arraylist.");
+				return;
+			} else {
+				for (int index = 0; index < immigrants.size() / 2; index++) {
+					immigrants.get(index).addRelative(immigrants.get(immigrants.size() - index - 1));
+					//immigrants.get(immigrants.size() - index - 1).addRelative(immigrants.get(index));
+				}
+				for (int index = 0; index < immigrants.size() - 1; index++) {
+					if (index == immigrants.size() / 2) {
+						continue;
+					}
+					immigrants.get(index).addRelative(immigrants.get(index + 1));
+				}
+			}
+		}
+	}
 
 	public static void main(String[] args) {
 
@@ -55,23 +80,34 @@ public class Demo {
 			ArrayList<RadikalImmigrant> radikalImmigrants = new ArrayList<>(25);
 			ArrayList<EkstremistImmigrant> ekstremistImmigrants = new ArrayList<>(35);
 			ArrayList<NormalImmigrant> normalImmigrants = new ArrayList<>(40);
+			ArrayList<Immigrant> immigrants = new ArrayList<>(100);
 
 			for (int index = 0; index < 9; index++) {
 				String name = Generation.generateName();
-				radikalImmigrants.add(new RadikalImmigrant(name, Generation.generateMoney(400, 1000), new Passport(name)));
+				radikalImmigrants
+						.add(new RadikalImmigrant(name, Generation.generateMoney(400, 1000), new Passport(name)));
 			}
 
 			for (int index = 0; index < 16; index++) {
-				radikalImmigrants.add(new RadikalImmigrant(Generation.generateName(), Generation.generateMoney(400, 1000)));
+				radikalImmigrants
+						.add(new RadikalImmigrant(Generation.generateName(), Generation.generateMoney(400, 1000)));
 			}
 
 			for (int index = 0; index < 35; index++) {
-				ekstremistImmigrants.add(new EkstremistImmigrant(Generation.generateName(), Generation.generateMoney(400, 1000)));
+				ekstremistImmigrants
+						.add(new EkstremistImmigrant(Generation.generateName(), Generation.generateMoney(400, 1000)));
 			}
 
 			for (int index = 0; index < 40; index++) {
 				normalImmigrants.add(new NormalImmigrant(Generation.generateName(), Generation.generateMoney(400, 1000)));
 			}
+
+			immigrants.addAll(normalImmigrants);
+			immigrants.addAll(radikalImmigrants);
+			immigrants.addAll(ekstremistImmigrants);
+			Collections.shuffle(immigrants);
+			
+			addTwoRelativesToImmigrants(immigrants);
 
 			byte numberOfBombs = (byte) (Math.random() * 70 + 1);
 			byte numberOfPistols = (byte) (Math.random() * 70 + 1);
@@ -95,11 +131,10 @@ public class Demo {
 			weapons.addAll(submachineGuns);
 			weapons.addAll(pistols);
 			weapons.addAll(bombs);
-			
-			
+			Collections.shuffle(weapons);
 
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 
 	}
