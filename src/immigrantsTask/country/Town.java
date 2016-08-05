@@ -14,6 +14,7 @@ public class Town {
 	private Country country;
 	private ArrayList<PoliceEmployee> policeEmployees;
 	private long numberOfInhabitants;
+
 	private ArrayList<Immigrant> immigrants;
 	
 	public Town(String name, long numberOfInhabitants) throws TownException {
@@ -46,5 +47,12 @@ public class Town {
 		}
 		
 	}
+    
+    public String getName() {
+		return this.name;
+	}
 
+    public long getNumberOfInhabitants() {
+		return numberOfInhabitants;
+	}
 }

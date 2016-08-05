@@ -1,8 +1,10 @@
 package immigrantsTask.country;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import immigrantsTask.exceptions.CountryException;
+import immigrantsTask.helpClasses.NumberOfInhabitantsInTownsComparator;
 import immigrantsTask.helpClasses.Validation;
 
 public class Country {
@@ -24,6 +26,18 @@ public class Country {
 			this.towns.add(town);
 		} else {
 			throw new CountryException("Invalid town.");
+		}
+	}
+	
+	public void showTownsSortedByNumberOfInhabitants(){
+		ArrayList<Town> townsSorted = new ArrayList<Town>(this.towns.size());
+		townsSorted.addAll(this.towns);
+		townsSorted.sort(new NumberOfInhabitantsInTownsComparator());
+		System.out.println("\nTowns in country " + this.name + " sorted by number of inhabitants:");
+		int count = 1;
+		for (Iterator iterator = townsSorted.iterator(); iterator.hasNext();) {
+			Town town = (Town) iterator.next();
+			System.out.println((count++) + ": " + town.getName() + ": " + town.getNumberOfInhabitants() + " inhabitants");
 		}
 	}
 

@@ -159,6 +159,8 @@ public class Demo {
 				immigrant.showImmigrantInfo();
 				System.out.println();
 			}
+			
+			bulgariq.showTownsSortedByNumberOfInhabitants();
 
 		} catch (Exception e) {
 			e.printStackTrace();
