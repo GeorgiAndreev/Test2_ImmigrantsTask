@@ -46,6 +46,9 @@ public class Demo {
 	public static void main(String[] args) {
 
 		try {
+			
+			// 1. create country with 5 towns, set their number of inhabitants, 
+			//    create police employees and divide them eyually among towns 
 
 			Town pleven = new Town("Pleven", 100000);
 			Town varna = new Town("Varna", 200000);
@@ -75,6 +78,10 @@ public class Demo {
 				smolqn.addPoliceEmployee(new SpecPoliceOfficer(Generation.generateName(), smolqn, bulgariq));
 				sofiq.addPoliceEmployee(new SpecPoliceOfficer(Generation.generateName(), sofiq, bulgariq));
 			}
+			
+			// 2. create 100 immigrants of different types with different probabilities, 
+			//    set their names, money and passports where possible,
+			//    give every immigrant two relatives from the other immigrants
 
 			ArrayList<RadikalImmigrant> radikalImmigrants = new ArrayList<>(25);
 			ArrayList<EkstremistImmigrant> ekstremistImmigrants = new ArrayList<>(35);
@@ -108,6 +115,10 @@ public class Demo {
 			Collections.shuffle(immigrants);
 
 			addTwoRelativesToImmigrants(immigrants);
+			
+			// 3. create 200 weapons from different types,
+			//    every illegal immigrant tries to buy 5 of them,
+			//    and if a weapon is sold it cannot be sold again
 
 			int numberOfBombs = Generation.generateInteger(0, 70);
 			int numberOfPistols = Generation.generateInteger(0, 70);
@@ -137,9 +148,15 @@ public class Demo {
 				Immigrant immigrant = (Immigrant) iterator.next();
 				if (immigrant instanceof IIllegalImmigrant) {
 					int indexOfWeapon = Generation.generateInteger(0, weapons.size() - 1);
-					((IIllegalImmigrant) immigrant).buyWeapon(weapons.get(indexOfWeapon));
+					for (int index = 1; index <= 5; index++) {
+						((IIllegalImmigrant) immigrant).buyWeapon(weapons.get(indexOfWeapon));
+					}
 				}
 			}
+			
+			// 5. show information for every immigrant: 
+			//    current town, wheather has password, money and names of relatives 
+			
 			int count = 1;
 			System.out.println("\nImmigrants unsorted:");
 			for (Iterator<Immigrant> iterator = immigrants.iterator(); iterator.hasNext();) {
@@ -148,6 +165,12 @@ public class Demo {
 				immigrant.showImmigrantInfo();
 				System.out.println();
 			}
+			
+			// 7. show towns sorted by number of survived inhabitants,
+			//    show immigrants sorted by amount of money they have,
+			//    show all immigrants that had bomb and had detonated it
+			
+			bulgariq.showTownsSortedByNumberOfInhabitants();
 			
 			immigrants.sort(new MoneyOfImmigrantsComparator());
 			
@@ -160,7 +183,7 @@ public class Demo {
 				System.out.println();
 			}
 			
-			bulgariq.showTownsSortedByNumberOfInhabitants();
+			
 
 		} catch (Exception e) {
 			e.printStackTrace();
