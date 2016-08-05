@@ -1,6 +1,7 @@
 package immigrantsTask.immigrants;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.TreeSet;
 
@@ -59,7 +60,7 @@ public abstract class Immigrant implements Comparable<Immigrant>{
 			this.relatives.add(relative);
 			relative.relatives.add(this);
 		} else {
-			throw new ImmigrantException("Invalid relative");
+			throw new ImmigrantException("Invalid relative.");
 		}
 	}
 	

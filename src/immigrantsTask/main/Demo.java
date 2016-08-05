@@ -8,6 +8,7 @@ import immigrantsTask.country.Country;
 import immigrantsTask.country.Town;
 import immigrantsTask.exceptions.ImmigrantException;
 import immigrantsTask.helpClasses.Generation;
+import immigrantsTask.helpClasses.MoneyOfImmigrantsComparator;
 import immigrantsTask.helpClasses.Validation;
 import immigrantsTask.immigrants.EkstremistImmigrant;
 import immigrantsTask.immigrants.IIllegalImmigrant;
@@ -140,6 +141,18 @@ public class Demo {
 				}
 			}
 			int count = 1;
+			System.out.println("\nImmigrants unsorted:");
+			for (Iterator<Immigrant> iterator = immigrants.iterator(); iterator.hasNext();) {
+				Immigrant immigrant = (Immigrant) iterator.next();
+				System.out.println("\n" + (count++));
+				immigrant.showImmigrantInfo();
+				System.out.println();
+			}
+			
+			immigrants.sort(new MoneyOfImmigrantsComparator());
+			
+			count = 1;
+			System.out.println("\nImmigrants sorted by amount of money:");
 			for (Iterator<Immigrant> iterator = immigrants.iterator(); iterator.hasNext();) {
 				Immigrant immigrant = (Immigrant) iterator.next();
 				System.out.println("\n" + (count++));
