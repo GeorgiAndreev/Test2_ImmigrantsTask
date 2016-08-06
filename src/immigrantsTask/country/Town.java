@@ -59,7 +59,7 @@ public class Town {
 	}
     
     public PoliceEmployee choosePoliceEmployeeToExamineImmigrant(Immigrant immigrant) {
-    	int indexOfPoliceEmployee = Generation.generateInteger(0, this.policeEmployees.size());
+    	int indexOfPoliceEmployee = Generation.generateInteger(0, this.policeEmployees.size() - 1);
     	if (this.policeEmployees.get(indexOfPoliceEmployee) instanceof PoliceOfficer) {
     		return this.policeEmployees.get(indexOfPoliceEmployee);
 		} 

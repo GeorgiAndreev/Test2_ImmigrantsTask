@@ -13,7 +13,7 @@ import immigrantsTask.weapons.Weapon;
 
 public class EkstremistImmigrant extends Immigrant implements IIllegalImmigrant {
 
-	boolean detonatedBomb;
+	private boolean detonatedBomb;
 	private ArrayList<Weapon> weapons;
 
 	public EkstremistImmigrant(String name, float nachalnaSumaPari) throws ImmigrantException {
@@ -57,8 +57,11 @@ public class EkstremistImmigrant extends Immigrant implements IIllegalImmigrant 
 			System.out.println("This immigrant has no bomb to detonate.");
 		} else {
 			if (this.getCurrentTown() != null) {
+				this.detonatedBomb = true;
 				this.getCurrentTown().getCountry().removeTown(this.getCurrentTown());
 				throw new BombExploadedException("Bomb exploaded in town " + this.getCurrentTown().getName());
+			} else {
+				System.out.println("Extremist must be in a town to detonate their bomb.");
 			}
 			
 		}
@@ -79,6 +82,10 @@ public class EkstremistImmigrant extends Immigrant implements IIllegalImmigrant 
 			}
 		}
 		return false;
+	}
+
+	public boolean isDetonatedBomb() {
+		return detonatedBomb;
 	}
 
 }
