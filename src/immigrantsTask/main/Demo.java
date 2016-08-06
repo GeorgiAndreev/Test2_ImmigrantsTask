@@ -15,7 +15,7 @@ import immigrantsTask.immigrants.IIllegalImmigrant;
 import immigrantsTask.immigrants.Immigrant;
 import immigrantsTask.immigrants.NormalImmigrant;
 import immigrantsTask.immigrants.Passport;
-import immigrantsTask.immigrants.RadikalImmigrant;
+import immigrantsTask.immigrants.RadicalImmigrant;
 import immigrantsTask.policeEmployees.PoliceOfficer;
 import immigrantsTask.policeEmployees.SpecPoliceOfficer;
 import immigrantsTask.weapons.Bomb;
@@ -31,7 +31,7 @@ public class Demo {
 				System.out.println("This method works only for even arraylist.");
 				return;
 			} else {
-				for (int index = 0; index < immigrants.size() / 2; index ++) {
+				for (int index = 0; index < immigrants.size() / 2; index++) {
 					immigrants.get(index).addRelative(immigrants.get(immigrants.size() - index - 1));
 					immigrants.get(immigrants.size() - index - 1).addRelative(immigrants.get(index));
 				}
@@ -83,7 +83,7 @@ public class Demo {
 			//    set their names, money and passports where possible,
 			//    give every immigrant two relatives from the other immigrants
 
-			ArrayList<RadikalImmigrant> radikalImmigrants = new ArrayList<>(25);
+			ArrayList<RadicalImmigrant> radikalImmigrants = new ArrayList<>(25);
 			ArrayList<EkstremistImmigrant> ekstremistImmigrants = new ArrayList<>(35);
 			ArrayList<NormalImmigrant> normalImmigrants = new ArrayList<>(40);
 			ArrayList<Immigrant> immigrants = new ArrayList<>(100);
@@ -91,12 +91,12 @@ public class Demo {
 			for (int index = 0; index < 9; index++) {
 				String name = Generation.generateName();
 				radikalImmigrants
-						.add(new RadikalImmigrant(name, Generation.generateMoney(850, 4000), new Passport(name)));
+						.add(new RadicalImmigrant(name, Generation.generateMoney(850, 4000), new Passport(name)));
 			}
 
 			for (int index = 0; index < 16; index++) {
 				radikalImmigrants
-						.add(new RadikalImmigrant(Generation.generateName(), Generation.generateMoney(850, 4000)));
+						.add(new RadicalImmigrant(Generation.generateName(), Generation.generateMoney(850, 4000)));
 			}
 
 			for (int index = 0; index < 35; index++) {
@@ -113,7 +113,7 @@ public class Demo {
 			immigrants.addAll(radikalImmigrants);
 			immigrants.addAll(ekstremistImmigrants);
 			Collections.shuffle(immigrants);
-
+			
 			addTwoRelativesToImmigrants(immigrants);
 			
 			// 3. create 200 weapons from different types,
@@ -176,8 +176,31 @@ public class Demo {
 			
 			// 6. 20 random illegal immigrants shoot or detonate themselves if they have a bomb
 			
-			
-			
+			int counter = 0;
+			for (Iterator<Immigrant> iterator = pleven.getImmigrants().iterator(); iterator.hasNext();) {
+				Immigrant immigrant = (Immigrant) iterator.next();
+				if (immigrant instanceof EkstremistImmigrant) {
+					if (((EkstremistImmigrant) immigrant).checkIfHasBomb()) {
+						((EkstremistImmigrant) immigrant).detonateBomb();
+						counter++;
+					} else {
+						if (((EkstremistImmigrant) immigrant).checkIfHasShootingWeapon()) {
+							((EkstremistImmigrant) immigrant).shootAtPeople();
+							counter++;
+						}
+					}
+				}
+				if (immigrant instanceof RadicalImmigrant) {
+					if (((RadicalImmigrant) immigrant).checkIfHasShootingWeapon()) {
+						((RadicalImmigrant) immigrant).shootAtPeople();
+						counter++;
+					}
+				}
+			    if (counter >= 5) {
+					break;
+				}
+			}
+				
 			// 7. show towns sorted by number of survived inhabitants,
 			//    show immigrants sorted by amount of money they have,
 			//    show all immigrants that had bomb and had detonated it
@@ -197,10 +220,13 @@ public class Demo {
 			
 			
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		}catch(
 
+	Exception e)
+	{
+		e.printStackTrace();
 	}
+
+}
 
 }

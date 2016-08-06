@@ -41,6 +41,7 @@ public class Town {
 			PoliceEmployee policeEmployee = this.choosePoliceEmployeeToExamineImmigrant(immigrant);
 			if (policeEmployee.checkImmigrant(immigrant)) {
 				this.immigrants.add(immigrant);
+				immigrant.setCurrentTown(this);
 			} else {
 				policeEmployee.arrestImmigrant(immigrant);
 			}
@@ -88,6 +89,10 @@ public class Town {
 
 	public Country getCountry() {
 		return country;
+	}
+
+	public ArrayList<Immigrant> getImmigrants() {
+		return immigrants;
 	}
 
 	public void setCountry(Country country) throws TownException {

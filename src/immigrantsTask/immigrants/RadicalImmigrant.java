@@ -1,26 +1,28 @@
 package immigrantsTask.immigrants;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import immigrantsTask.exceptions.IllegalImmigrantDiedFromRageException;
 import immigrantsTask.exceptions.ImmigrantException;
 import immigrantsTask.helpClasses.Validation;
+import immigrantsTask.weapons.Detonateable;
 import immigrantsTask.weapons.IShooting;
 import immigrantsTask.weapons.Weapon;
 
-public class RadikalImmigrant extends Immigrant implements IIllegalImmigrant{
+public class RadicalImmigrant extends Immigrant implements IIllegalImmigrant{
 	
 	static final byte MAX_NUMBER_OF_WEAPONS = 5;
 	
 	private Passport pasport;
 	private ArrayList<Weapon> weapons; 
 	
-	public RadikalImmigrant(String name, float initialAmountMoney) throws ImmigrantException {
+	public RadicalImmigrant(String name, float initialAmountMoney) throws ImmigrantException {
 		super(name, initialAmountMoney);
 		this.weapons = new ArrayList<>();
 	}
 	
-	public RadikalImmigrant(String name, float nachalnaSumaPari, Passport passport) throws ImmigrantException {
+	public RadicalImmigrant(String name, float nachalnaSumaPari, Passport passport) throws ImmigrantException {
 		super(name, nachalnaSumaPari);
 		if (Validation.validateObjectIsNotNull(passport)) {
 			this.pasport = passport;
@@ -62,6 +64,17 @@ public class RadikalImmigrant extends Immigrant implements IIllegalImmigrant{
 			System.out.println("\nThis immigrant has passport,");
 		}
 		super.showImmigrantInfo();
+	}
+
+	@Override
+	public boolean checkIfHasShootingWeapon() throws Exception {
+		for (Iterator<Weapon> iterator = weapons.iterator(); iterator.hasNext();) {
+			Weapon weapon = (Weapon) iterator.next();
+			if (!(weapon instanceof Detonateable)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 }

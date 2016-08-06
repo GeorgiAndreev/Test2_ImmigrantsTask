@@ -100,9 +100,19 @@ public abstract class Immigrant implements Comparable<Immigrant>{
 			this.initialAmountMoney = initialAmountMoney;
 		} else {
 			throw new ImmigrantException("Invalid amount money.");
+		}	
+	}
+
+	public void setCurrentTown(Town currentTown) throws ImmigrantException {
+		if (Validation.validateObjectIsNotNull(currentTown)) {
+			this.currentTown = currentTown;
+		} else {
+			throw new ImmigrantException("Invalid town.");
 		}
 		
 	}
+	
+	
 
 	
 	
