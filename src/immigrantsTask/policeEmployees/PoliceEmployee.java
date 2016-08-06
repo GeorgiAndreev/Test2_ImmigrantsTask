@@ -5,7 +5,7 @@ import immigrantsTask.country.Town;
 import immigrantsTask.exceptions.PoliceEmployeeException;
 import immigrantsTask.helpClasses.Validation;
 
-public abstract class PoliceEmployee {
+public abstract class PoliceEmployee implements IPoliceEmployee{
 	
 	private String name;
 	private Town town;

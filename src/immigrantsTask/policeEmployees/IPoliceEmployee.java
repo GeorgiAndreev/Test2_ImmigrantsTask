@@ -1,8 +1,10 @@
 package immigrantsTask.policeEmployees;
 
+import immigrantsTask.immigrants.Immigrant;
+
 public interface IPoliceEmployee {
 	
-	void arrestImmigrant() throws Exception;
-	void examineImmigrant() throws Exception;
+	void arrestImmigrant(Immigrant immigrant) throws Exception;
+	void examineImmigrant(Immigrant immigrant) throws Exception;
 
 }

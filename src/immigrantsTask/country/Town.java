@@ -4,9 +4,13 @@ import java.util.ArrayList;
 
 import immigrantsTask.exceptions.CountryException;
 import immigrantsTask.exceptions.TownException;
+import immigrantsTask.helpClasses.Generation;
 import immigrantsTask.helpClasses.Validation;
+import immigrantsTask.immigrants.IIllegalImmigrant;
 import immigrantsTask.immigrants.Immigrant;
 import immigrantsTask.policeEmployees.PoliceEmployee;
+import immigrantsTask.policeEmployees.PoliceOfficer;
+import immigrantsTask.policeEmployees.SpecPoliceOfficer;
 
 public class Town {
 	
@@ -44,9 +48,29 @@ public class Town {
 			this.policeEmployees.add(policeEmployee);
 		} else {
 			throw new TownException("Invalid police employee.");
-		}
-		
+		}	
 	}
+    
+    public PoliceEmployee choosePoliceEmployeeToExamineImmigrant(Immigrant immigrant) {
+    	int indexOfPoliceEmployee = Generation.generateInteger(0, this.policeEmployees.size());
+    	if (this.policeEmployees.get(indexOfPoliceEmployee) instanceof PoliceOfficer) {
+    		return this.policeEmployees.get(indexOfPoliceEmployee);
+		} 
+    	if (this.policeEmployees.get(indexOfPoliceEmployee) instanceof SpecPoliceOfficer) {
+    		if (immigrant instanceof IIllegalImmigrant) {
+    			return this.policeEmployees.get(indexOfPoliceEmployee);
+			} else {
+				while (true) {
+					indexOfPoliceEmployee = Generation.generateInteger(0, this.policeEmployees.size());
+					if (this.policeEmployees.get(indexOfPoliceEmployee) instanceof SpecPoliceOfficer) {
+						break;
+					}
+				}	
+			}	
+		}
+    	return this.policeEmployees.get(indexOfPoliceEmployee);
+    	
+    }
     
     public String getName() {
 		return this.name;

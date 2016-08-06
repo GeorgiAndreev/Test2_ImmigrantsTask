@@ -74,6 +74,10 @@ public abstract class Immigrant implements Comparable<Immigrant>{
 		}
 		return numberOfRelatives;
 	}
+	
+	public void immigrate(Town town) throws Exception {
+		town.choosePoliceEmployeeToExamineImmigrant(this).examineImmigrant(this);
+	}
 
 	public String getName() {
 		return name;
