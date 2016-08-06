@@ -5,6 +5,7 @@ import java.util.Iterator;
 
 import immigrantsTask.exceptions.IllegalImmigrantDiedFromRageException;
 import immigrantsTask.exceptions.ImmigrantException;
+import immigrantsTask.helpClasses.Generation;
 import immigrantsTask.helpClasses.Validation;
 import immigrantsTask.weapons.Detonateable;
 import immigrantsTask.weapons.IShooting;
@@ -15,7 +16,7 @@ public class RadicalImmigrant extends Immigrant implements IIllegalImmigrant{
 	static final byte MAX_NUMBER_OF_WEAPONS = 5;
 	
 	private Passport pasport;
-	private ArrayList<Weapon> weapons; 
+	private ArrayList<IShooting> weapons; 
 	
 	public RadicalImmigrant(String name, float initialAmountMoney) throws ImmigrantException {
 		super(name, initialAmountMoney);
@@ -43,7 +44,7 @@ public class RadicalImmigrant extends Immigrant implements IIllegalImmigrant{
 			return;
 		}
 		if (this.getInitialAmountMoney() >= weapon.getPrice()) {
-			this.weapons.add(weapon);
+			this.weapons.add((IShooting) weapon);
 			weapon.markThatWeaponIsSold();
 			setInitialAmountMoney(this.getInitialAmountMoney() - weapon.getPrice());
 		} else {
@@ -54,6 +55,16 @@ public class RadicalImmigrant extends Immigrant implements IIllegalImmigrant{
 	@Override
 	public void shootAtPeople() throws Exception {	
 		
+	}
+	
+    public void shootWithAllWeapons() throws Exception {	
+    	int shotPatrons = 0;
+		for (Iterator<IShooting> iterator = weapons.iterator(); iterator.hasNext();) {
+			Weapon weapon = (Weapon) iterator.next();
+			shotPatrons += ((IShooting) weapon).shoot();
+		}
+		int killedPeople = Generation.generateInteger(((1/10) * shotPatrons), ((7/10) * shotPatrons));
+		this.getCurrentTown().setNumberOfInhabitants(this.getCurrentTown().getNumberOfInhabitants() - killedPeople);
 	}
 
 	@Override
@@ -68,13 +79,10 @@ public class RadicalImmigrant extends Immigrant implements IIllegalImmigrant{
 
 	@Override
 	public boolean checkIfHasShootingWeapon() throws Exception {
-		for (Iterator<Weapon> iterator = weapons.iterator(); iterator.hasNext();) {
-			Weapon weapon = (Weapon) iterator.next();
-			if (!(weapon instanceof Detonateable)) {
-				return true;
-			}
+		if (weapons.isEmpty()) {
+			return false;
 		}
-		return false;
+		return true;
 	}
 
 }

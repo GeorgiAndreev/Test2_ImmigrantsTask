@@ -14,13 +14,13 @@ import immigrantsTask.policeEmployees.PoliceOfficer;
 import immigrantsTask.policeEmployees.SpecPoliceOfficer;
 
 public class Town {
-	
+
 	private String name;
 	private Country country;
 	private ArrayList<PoliceEmployee> policeEmployees;
 	private long numberOfInhabitants;
 	private ArrayList<Immigrant> immigrants;
-	
+
 	public Town(String name, long numberOfInhabitants) throws TownException {
 		if (Validation.validateString(name)) {
 			this.name = name;
@@ -31,11 +31,11 @@ public class Town {
 			this.numberOfInhabitants = numberOfInhabitants;
 		} else {
 			throw new TownException("Invalid number of inhabitants.");
-		}	
+		}
 		this.policeEmployees = new ArrayList<PoliceEmployee>();
 		this.immigrants = new ArrayList<Immigrant>();
 	}
-	
+
 	public void addImigrant(Immigrant immigrant) throws Exception {
 		if (Validation.validateObjectIsNotNull(immigrant)) {
 			PoliceEmployee policeEmployee = this.choosePoliceEmployeeToExamineImmigrant(immigrant);
@@ -49,42 +49,50 @@ public class Town {
 			throw new TownException("Invalid immigrant");
 		}
 	}
-	
-    public void addPoliceEmployee(PoliceEmployee policeEmployee) throws TownException {
-    	if (Validation.validateObjectIsNotNull(policeEmployee)) {
+
+	public void addPoliceEmployee(PoliceEmployee policeEmployee) throws TownException {
+		if (Validation.validateObjectIsNotNull(policeEmployee)) {
 			this.policeEmployees.add(policeEmployee);
 		} else {
 			throw new TownException("Invalid police employee.");
-		}	
+		}
 	}
-    
-    public PoliceEmployee choosePoliceEmployeeToExamineImmigrant(Immigrant immigrant) {
-    	int indexOfPoliceEmployee = Generation.generateInteger(0, this.policeEmployees.size() - 1);
-    	if (this.policeEmployees.get(indexOfPoliceEmployee) instanceof PoliceOfficer) {
-    		return this.policeEmployees.get(indexOfPoliceEmployee);
-		} 
-    	if (this.policeEmployees.get(indexOfPoliceEmployee) instanceof SpecPoliceOfficer) {
-    		if (immigrant instanceof IIllegalImmigrant) {
-    			return this.policeEmployees.get(indexOfPoliceEmployee);
+
+	public PoliceEmployee choosePoliceEmployeeToExamineImmigrant(Immigrant immigrant) {
+		int indexOfPoliceEmployee = Generation.generateInteger(0, this.policeEmployees.size() - 1);
+		if (this.policeEmployees.get(indexOfPoliceEmployee) instanceof PoliceOfficer) {
+			return this.policeEmployees.get(indexOfPoliceEmployee);
+		}
+		if (this.policeEmployees.get(indexOfPoliceEmployee) instanceof SpecPoliceOfficer) {
+			if (immigrant instanceof IIllegalImmigrant) {
+				return this.policeEmployees.get(indexOfPoliceEmployee);
 			} else {
 				while (true) {
 					indexOfPoliceEmployee = Generation.generateInteger(0, this.policeEmployees.size());
 					if (this.policeEmployees.get(indexOfPoliceEmployee) instanceof PoliceOfficer) {
 						break;
 					}
-				}	
-			}	
+				}
+			}
 		}
-    	return this.policeEmployees.get(indexOfPoliceEmployee);
-    	
-    }
-    
-    public String getName() {
+		return this.policeEmployees.get(indexOfPoliceEmployee);
+
+	}
+
+	public String getName() {
 		return this.name;
 	}
 
-    public long getNumberOfInhabitants() {
+	public long getNumberOfInhabitants() {
 		return numberOfInhabitants;
+	}
+
+	public void setNumberOfInhabitants(long numberOfInhabitants) throws TownException {
+		if (Validation.validateNumberIsPositive(numberOfInhabitants)) {
+			this.numberOfInhabitants = numberOfInhabitants;
+		} else {
+			throw new TownException("Invalid number of inhabitants.");
+		}
 	}
 
 	public Country getCountry() {
@@ -101,8 +109,7 @@ public class Town {
 		} else {
 			throw new TownException("Invalid country.");
 		}
-		
+
 	}
-    
-    
+
 }
