@@ -80,4 +80,19 @@ public class Town {
     public long getNumberOfInhabitants() {
 		return numberOfInhabitants;
 	}
+
+	public Country getCountry() {
+		return country;
+	}
+
+	public void setCountry(Country country) throws TownException {
+		if (Validation.validateObjectIsNotNull(country)) {
+			this.country = country;
+		} else {
+			throw new TownException("Invalid country.");
+		}
+		
+	}
+    
+    
 }

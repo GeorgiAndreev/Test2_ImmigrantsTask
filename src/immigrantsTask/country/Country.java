@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import immigrantsTask.exceptions.CountryException;
+import immigrantsTask.exceptions.TownException;
 import immigrantsTask.helpClasses.NumberOfInhabitantsInTownsComparator;
 import immigrantsTask.helpClasses.Validation;
 
@@ -21,9 +22,18 @@ public class Country {
 		
 	}
 	
-	public void addTown(Town town) throws CountryException{
+	public void addTown(Town town) throws CountryException, TownException{
 		if (Validation.validateObjectIsNotNull(town)) {
 			this.towns.add(town);
+			town.setCountry(this);
+		} else {
+			throw new CountryException("Invalid town.");
+		}
+	}
+	
+	public void removeTown(Town town) throws CountryException, TownException{
+		if (Validation.validateObjectIsNotNull(town)) {
+			this.towns.remove(town);
 		} else {
 			throw new CountryException("Invalid town.");
 		}

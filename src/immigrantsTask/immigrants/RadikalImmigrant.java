@@ -30,10 +30,6 @@ public class RadikalImmigrant extends Immigrant implements IIllegalImmigrant{
 		this.weapons = new ArrayList<>();
 	}
 	
-	void detonateBomb(){
-		
-	}
-
 	@Override
 	public void buyWeapon(Weapon weapon) throws Exception {
 		if (!(weapon instanceof IShooting)) {
@@ -54,9 +50,7 @@ public class RadikalImmigrant extends Immigrant implements IIllegalImmigrant{
 	}
 
 	@Override
-	public void shootAtPeople() throws Exception {
-		
-		
+	public void shootAtPeople() throws Exception {	
 		
 	}
 

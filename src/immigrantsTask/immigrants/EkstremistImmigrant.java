@@ -4,7 +4,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import immigrantsTask.exceptions.ImmigrantException;
+import immigrantsTask.exceptions.TownException;
+import immigrantsTask.exceptions.BombExploadedException;
+import immigrantsTask.exceptions.CountryException;
 import immigrantsTask.exceptions.IllegalImmigrantDiedFromRageException;
+import immigrantsTask.weapons.Detonateable;
 import immigrantsTask.weapons.Weapon;
 
 public class EkstremistImmigrant extends Immigrant implements IIllegalImmigrant {
@@ -35,6 +39,25 @@ public class EkstremistImmigrant extends Immigrant implements IIllegalImmigrant 
 	@Override
 	public void shootAtPeople() throws Exception {
 
+	}
+	
+	public boolean checkIfHasBomb() {
+		for (Iterator<Weapon> iterator = weapons.iterator(); iterator.hasNext();) {
+			Weapon weapon = (Weapon) iterator.next();
+			if (weapon instanceof Detonateable) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public void detonateBomb() throws CountryException, TownException, BombExploadedException {
+		if (!(this.checkIfHasBomb())) {
+			System.out.println("This immigrant has no bomb to detonate.");
+		} else {
+			this.getCurrentTown().getCountry().removeTown(this.getCurrentTown());
+			throw new BombExploadedException("Bomb exploaded in town " + this.getCurrentTown().getName());
+		}
 	}
 
 	@Override

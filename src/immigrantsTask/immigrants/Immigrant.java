@@ -91,6 +91,10 @@ public abstract class Immigrant implements Comparable<Immigrant>{
 		return initialAmountMoney;
 	}
 	
+	public Town getCurrentTown() {
+		return currentTown;
+	}
+
 	public void setInitialAmountMoney(float initialAmountMoney) throws ImmigrantException {
 		if (Validation.validateNumberIsPositive(initialAmountMoney)) {
 			this.initialAmountMoney = initialAmountMoney;
