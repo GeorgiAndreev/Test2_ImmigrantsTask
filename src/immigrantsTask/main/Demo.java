@@ -26,7 +26,7 @@ import immigrantsTask.weapons.Weapon;
 public class Demo {
 
 	public static void addTwoRelativesToImmigrants(ArrayList<Immigrant> immigrants) throws ImmigrantException {
-		if (Validation.validateObject(immigrants)) {
+		if (Validation.validateObjectIsNotNull(immigrants)) {
 			if (immigrants.size() % 2 == 1) {
 				System.out.println("This method works only for even arraylist.");
 				return;
@@ -154,6 +154,11 @@ public class Demo {
 				}
 			}
 			
+			// 4. all immigrants immigrate to random town, 
+			//    when immigrant immigrates to a town, a police officer is chosen to check their passport
+			
+			
+			
 			// 5. show information for every immigrant: 
 			//    current town, wheather has password, money and names of relatives 
 			
@@ -165,6 +170,10 @@ public class Demo {
 				immigrant.showImmigrantInfo();
 				System.out.println();
 			}
+			
+			// 6. 20 random illegal immigrants shoot or detonate themselves if they have a bomb
+			
+			
 			
 			// 7. show towns sorted by number of survived inhabitants,
 			//    show immigrants sorted by amount of money they have,

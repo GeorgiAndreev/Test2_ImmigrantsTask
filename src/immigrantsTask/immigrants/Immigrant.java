@@ -1,7 +1,6 @@
 package immigrantsTask.immigrants;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.Iterator;
 import java.util.TreeSet;
 
@@ -22,7 +21,7 @@ public abstract class Immigrant implements Comparable<Immigrant>{
 		} else {
 			throw new ImmigrantException("Invalid name.");
 		}
-		if (Validation.validateNumber(initialAmountMoney)) {
+		if (Validation.validateNumberIsPositive(initialAmountMoney)) {
 			this.initialAmountMoney = initialAmountMoney;
 		} else {
 			throw new ImmigrantException("Invalid money.");
@@ -56,7 +55,7 @@ public abstract class Immigrant implements Comparable<Immigrant>{
 	}
 	
 	public void addRelative(Immigrant relative) throws ImmigrantException {
-		if (Validation.validateObject(relative)) {
+		if (Validation.validateObjectIsNotNull(relative)) {
 			this.relatives.add(relative);
 			relative.relatives.add(this);
 		} else {
@@ -78,6 +77,11 @@ public abstract class Immigrant implements Comparable<Immigrant>{
 	public void immigrate(Town town) throws Exception {
 		town.choosePoliceEmployeeToExamineImmigrant(this).examineImmigrant(this);
 	}
+	
+	@Override
+	public int compareTo(Immigrant immigrant) {
+		return this.getName().compareTo(((Immigrant) immigrant).getName());
+	}
 
 	public String getName() {
 		return name;
@@ -86,10 +90,16 @@ public abstract class Immigrant implements Comparable<Immigrant>{
 	public float getInitialAmountMoney() {
 		return initialAmountMoney;
 	}
-
-	@Override
-	public int compareTo(Immigrant immigrant) {
-		return this.getName().compareTo(((Immigrant) immigrant).getName());
+	
+	public void setInitialAmountMoney(float initialAmountMoney) throws ImmigrantException {
+		if (Validation.validateNumberIsPositive(initialAmountMoney)) {
+			this.initialAmountMoney = initialAmountMoney;
+		} else {
+			throw new ImmigrantException("Invalid amount money.");
+		}
+		
 	}
+
+	
 	
 }

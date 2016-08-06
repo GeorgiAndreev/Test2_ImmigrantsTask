@@ -17,12 +17,12 @@ public abstract class PoliceEmployee implements IPoliceEmployee{
 		} else {
 			throw new PoliceEmployeeException("Invalid name.");
 		}
-		if (Validation.validateObject(town)) {
+		if (Validation.validateObjectIsNotNull(town)) {
 			this.town = town;
 		} else {
 			throw new PoliceEmployeeException("Invalid town.");
 		}
-		if (Validation.validateObject(country)) {
+		if (Validation.validateObjectIsNotNull(country)) {
 			this.country = country;
 		} else {
 			throw new PoliceEmployeeException("Invalid country.");

@@ -22,7 +22,7 @@ public class Country {
 	}
 	
 	public void addTown(Town town) throws CountryException{
-		if (Validation.validateObject(town)) {
+		if (Validation.validateObjectIsNotNull(town)) {
 			this.towns.add(town);
 		} else {
 			throw new CountryException("Invalid town.");

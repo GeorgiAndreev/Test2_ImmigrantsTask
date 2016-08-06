@@ -24,6 +24,8 @@ public class EkstremistImmigrant extends Immigrant implements IIllegalImmigrant 
 		}
 		if (this.getInitialAmountMoney() >= weapon.getPrice()) {
 			this.weapons.add(weapon);
+			weapon.markThatWeaponIsSold();
+			setInitialAmountMoney(this.getInitialAmountMoney() - weapon.getPrice());
 		} else {
 			throw new IllegalImmigrantDiedFromRageException(
 					"Immigrant had not enough money to buy weapon and died from rage.");

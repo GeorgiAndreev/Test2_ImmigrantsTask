@@ -8,6 +8,7 @@ import immigrantsTask.helpClasses.Generation;
 import immigrantsTask.helpClasses.Validation;
 import immigrantsTask.immigrants.IIllegalImmigrant;
 import immigrantsTask.immigrants.Immigrant;
+import immigrantsTask.policeEmployees.IPoliceEmployee;
 import immigrantsTask.policeEmployees.PoliceEmployee;
 import immigrantsTask.policeEmployees.PoliceOfficer;
 import immigrantsTask.policeEmployees.SpecPoliceOfficer;
@@ -27,7 +28,7 @@ public class Town {
 		} else {
 			throw new TownException("Invalid name.");
 		}
-		if (Validation.validateNumber(numberOfInhabitants)) {
+		if (Validation.validateNumberIsPositive(numberOfInhabitants)) {
 			this.numberOfInhabitants = numberOfInhabitants;
 		} else {
 			throw new TownException("Invalid number of inhabitants.");
@@ -36,7 +37,7 @@ public class Town {
 	}
 	
 	public void addImigrant(Immigrant immigrant) throws TownException {
-		if (Validation.validateObject(immigrant)) {
+		if (Validation.validateObjectIsNotNull(immigrant)) {
 			this.immigrants.add(immigrant);
 		} else {
 			throw new TownException("Invalid imigrant");
@@ -44,7 +45,7 @@ public class Town {
 	}
 	
     public void addPoliceEmployee(PoliceEmployee policeEmployee) throws TownException {
-    	if (Validation.validateObject(policeEmployee)) {
+    	if (Validation.validateObjectIsNotNull(policeEmployee)) {
 			this.policeEmployees.add(policeEmployee);
 		} else {
 			throw new TownException("Invalid police employee.");

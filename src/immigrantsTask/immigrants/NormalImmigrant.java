@@ -21,7 +21,7 @@ public class NormalImmigrant extends Immigrant {
 	
 	@Override
 	public void addRelative(Immigrant immigrant) throws ImmigrantException {
-		if (Validation.validateObject(immigrant)) {
+		if (Validation.validateObjectIsNotNull(immigrant)) {
 			int currentNumberOfRelatives = 0;
 			for (Iterator<Immigrant> iterator = relatives.iterator(); iterator.hasNext();) {
 				Immigrant imigrantRodnina = (Immigrant) iterator.next();

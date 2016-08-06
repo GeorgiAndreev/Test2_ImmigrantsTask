@@ -9,14 +9,14 @@ public abstract class Weapon {
 	private boolean isSold;
 	
 	public Weapon(float price) throws WeaponException {
-		if (Validation.validateNumber(price)) {
+		if (Validation.validateNumberIsPositive(price)) {
 			this.price = price;
 		} else {
-			throw new WeaponException("Invalid price");
+			throw new WeaponException("Invalid price.");
 		}
 	}
 	
-	void prodaiSe() {
+	public void markThatWeaponIsSold() {
 		this.isSold = true;
 	}
 

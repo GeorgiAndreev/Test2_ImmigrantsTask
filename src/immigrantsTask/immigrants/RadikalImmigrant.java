@@ -22,7 +22,7 @@ public class RadikalImmigrant extends Immigrant implements IIllegalImmigrant{
 	
 	public RadikalImmigrant(String name, float nachalnaSumaPari, Passport passport) throws ImmigrantException {
 		super(name, nachalnaSumaPari);
-		if (Validation.validateObject(passport)) {
+		if (Validation.validateObjectIsNotNull(passport)) {
 			this.pasport = passport;
 		} else {
 			throw new ImmigrantException("Invalid passport.");
@@ -46,6 +46,8 @@ public class RadikalImmigrant extends Immigrant implements IIllegalImmigrant{
 		}
 		if (this.getInitialAmountMoney() >= weapon.getPrice()) {
 			this.weapons.add(weapon);
+			weapon.markThatWeaponIsSold();
+			setInitialAmountMoney(this.getInitialAmountMoney() - weapon.getPrice());
 		} else {
 			throw new IllegalImmigrantDiedFromRageException("Immigrant had not enough money to buy weapon and died from rage.");
 		}	

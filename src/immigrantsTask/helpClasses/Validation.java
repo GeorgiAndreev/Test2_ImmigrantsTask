@@ -10,7 +10,7 @@ public abstract class Validation {
 		}
 	}
 	
-	public static boolean validateObject(Object object) {
+	public static boolean validateObjectIsNotNull(Object object) {
 		if (object != null) {
 			return true;
 		} else {
@@ -18,7 +18,7 @@ public abstract class Validation {
 		}
 	}
 	
-	public static boolean validateNumber(long number) {
+	public static boolean validateNumberIsPositive(long number) {
 		if (number > 0) {
 			return true;
 		} else {
@@ -26,7 +26,7 @@ public abstract class Validation {
 		}
 	}
 	
-	public static boolean validateNumber(float number) {
+	public static boolean validateNumberIsPositive(float number) {
 		if (number > 0) {
 			return true;
 		} else {
