@@ -4,6 +4,7 @@ import immigrantsTask.country.Country;
 import immigrantsTask.country.Town;
 import immigrantsTask.exceptions.PoliceEmployeeException;
 import immigrantsTask.immigrants.Immigrant;
+import immigrantsTask.immigrants.NormalImmigrant;
 
 public class PoliceOfficer extends PoliceEmployee implements IPoliceEmployee{
 
@@ -18,8 +19,11 @@ public class PoliceOfficer extends PoliceEmployee implements IPoliceEmployee{
 	}
 
 	@Override
-	public void examineImmigrant(Immigrant immigrant) throws Exception {
-		// TODO Auto-generated method stub
+	public boolean checkImmigrant(Immigrant immigrant) throws Exception {
+		if (immigrant instanceof NormalImmigrant) {
+			return true;
+		}
+		return false;
 		
 	}
 

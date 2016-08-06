@@ -5,6 +5,6 @@ import immigrantsTask.immigrants.Immigrant;
 public interface IPoliceEmployee {
 	
 	void arrestImmigrant(Immigrant immigrant) throws Exception;
-	void examineImmigrant(Immigrant immigrant) throws Exception;
+	boolean checkImmigrant(Immigrant immigrant) throws Exception;
 
 }

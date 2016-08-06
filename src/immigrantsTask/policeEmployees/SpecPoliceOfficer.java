@@ -5,6 +5,7 @@ import immigrantsTask.country.Town;
 import immigrantsTask.exceptions.PoliceEmployeeException;
 import immigrantsTask.immigrants.IIllegalImmigrant;
 import immigrantsTask.immigrants.Immigrant;
+import immigrantsTask.immigrants.NormalImmigrant;
 
 public class SpecPoliceOfficer extends PoliceEmployee implements IPoliceEmployee{
 
@@ -19,12 +20,14 @@ public class SpecPoliceOfficer extends PoliceEmployee implements IPoliceEmployee
 	}
 
 	@Override
-	public void examineImmigrant(Immigrant immigrant) throws Exception {
+	public boolean checkImmigrant(Immigrant immigrant) throws Exception {
 		if (!(immigrant instanceof IIllegalImmigrant)) {
-			System.out.println("Spec police officers examine only radical and extremist immigrants.");
-			return;
+			throw new PoliceEmployeeException("Spec police officers examine only radical and extremist immigrants.");
 		}
-		
+		if (immigrant instanceof NormalImmigrant) {
+			return true;
+		}
+		return false;
 	}
 
 }

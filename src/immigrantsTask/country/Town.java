@@ -36,11 +36,16 @@ public class Town {
 		this.policeEmployees = new ArrayList();
 	}
 	
-	public void addImigrant(Immigrant immigrant) throws TownException {
+	public void addImigrant(Immigrant immigrant) throws Exception {
 		if (Validation.validateObjectIsNotNull(immigrant)) {
-			this.immigrants.add(immigrant);
+			PoliceEmployee policeEmployee = this.choosePoliceEmployeeToExamineImmigrant(immigrant);
+			if (policeEmployee.checkImmigrant(immigrant)) {
+				this.immigrants.add(immigrant);
+			} else {
+				policeEmployee.arrestImmigrant(immigrant);
+			}
 		} else {
-			throw new TownException("Invalid imigrant");
+			throw new TownException("Invalid immigrant");
 		}
 	}
 	
