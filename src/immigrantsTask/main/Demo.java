@@ -157,7 +157,10 @@ public class Demo {
 			// 4. all immigrants immigrate to random town, 
 			//    when immigrant immigrates to a town, a police officer is chosen to check their passport
 			
-			
+			for (Iterator<Immigrant> iterator = immigrants.iterator(); iterator.hasNext();) {
+				Immigrant immigrant = (Immigrant) iterator.next();
+				pleven.addImigrant(immigrant);
+			}
 			
 			// 5. show information for every immigrant: 
 			//    current town, wheather has password, money and names of relatives 

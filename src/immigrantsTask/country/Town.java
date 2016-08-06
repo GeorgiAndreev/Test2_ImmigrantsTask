@@ -19,7 +19,6 @@ public class Town {
 	private Country country;
 	private ArrayList<PoliceEmployee> policeEmployees;
 	private long numberOfInhabitants;
-
 	private ArrayList<Immigrant> immigrants;
 	
 	public Town(String name, long numberOfInhabitants) throws TownException {
@@ -33,7 +32,8 @@ public class Town {
 		} else {
 			throw new TownException("Invalid number of inhabitants.");
 		}	
-		this.policeEmployees = new ArrayList();
+		this.policeEmployees = new ArrayList<PoliceEmployee>();
+		this.immigrants = new ArrayList<Immigrant>();
 	}
 	
 	public void addImigrant(Immigrant immigrant) throws Exception {
@@ -68,7 +68,7 @@ public class Town {
 			} else {
 				while (true) {
 					indexOfPoliceEmployee = Generation.generateInteger(0, this.policeEmployees.size());
-					if (this.policeEmployees.get(indexOfPoliceEmployee) instanceof SpecPoliceOfficer) {
+					if (this.policeEmployees.get(indexOfPoliceEmployee) instanceof PoliceOfficer) {
 						break;
 					}
 				}	

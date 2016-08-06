@@ -75,7 +75,7 @@ public abstract class Immigrant implements Comparable<Immigrant>{
 	}
 	
 	public void immigrate(Town town) throws Exception {
-		town.choosePoliceEmployeeToExamineImmigrant(this).checkImmigrant(this);
+		town.addImigrant(this);
 	}
 	
 	@Override
