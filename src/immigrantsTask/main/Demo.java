@@ -157,6 +157,8 @@ public class Demo {
 			// when immigrant immigrates to a town, a police officer is chosen
 			// to check their passport
 
+			System.out.println("\n");
+			
 			for (Iterator<Immigrant> iterator = immigrants.iterator(); iterator.hasNext();) {
 				Immigrant immigrant = (Immigrant) iterator.next();
 				pleven.addImigrant(immigrant);
@@ -178,6 +180,7 @@ public class Demo {
 			// they have a bomb
 
 			int counter = 0;
+			System.out.println("\n");
 			for (Iterator<Immigrant> iterator = pleven.getImmigrants().iterator(); iterator.hasNext();) {
 				Immigrant immigrant = (Immigrant) iterator.next();
 				if (immigrant instanceof EkstremistImmigrant) {

@@ -23,8 +23,8 @@ public class RadicalImmigrant extends Immigrant implements IIllegalImmigrant{
 		this.weapons = new ArrayList<>();
 	}
 	
-	public RadicalImmigrant(String name, float nachalnaSumaPari, Passport passport) throws ImmigrantException {
-		super(name, nachalnaSumaPari);
+	public RadicalImmigrant(String name, float initialAmountMoney, Passport passport) throws ImmigrantException {
+		super(name, initialAmountMoney);
 		if (Validation.validateObjectIsNotNull(passport)) {
 			this.pasport = passport;
 		} else {
@@ -78,6 +78,10 @@ public class RadicalImmigrant extends Immigrant implements IIllegalImmigrant{
 			return false;
 		}
 		return true;
+	}
+
+	public Passport getPasport() {
+		return pasport;
 	}
 
 }
