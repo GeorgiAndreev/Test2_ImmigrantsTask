@@ -1,6 +1,7 @@
 package immigrantsTask.weapons;
 
 import immigrantsTask.exceptions.WeaponException;
+import immigrantsTask.helpClasses.Generation;
 
 public class Pistol extends Weapon implements IShooting{
 
@@ -11,7 +12,7 @@ public class Pistol extends Weapon implements IShooting{
 	@Override
 	public int shoot() throws Exception {
 		System.out.println("Pistol shooting...");
-		int numberOfPatrons = (int)(Math.random() * 1000 + 1);
+		int numberOfPatrons = Generation.generateInteger(30, 200);
 		return numberOfPatrons;
 	}
 

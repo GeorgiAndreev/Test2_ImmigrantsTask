@@ -51,14 +51,13 @@ public class EkstremistImmigrant extends Immigrant implements IIllegalImmigrant 
 		if (!(this.checkIfHasBomb())) {
 			System.out.println("This immigrant has no bomb to detonate.");
 		} else {
-			if (this.getCurrentTown() != null) {
+			if ((this.getCurrentTown() != null) && (this.getCurrentTown().getCountry() != null) && (this.getCurrentTown().getName() != null)) {
 				this.detonatedBomb = true;
 				this.getCurrentTown().getCountry().removeTown(this.getCurrentTown());
 				throw new BombExploadedException("Bomb exploaded in town " + this.getCurrentTown().getName());
 			} else {
 				System.out.println("Extremist must be in a town to detonate their bomb.");
-			}
-			
+			}		
 		}
 	}
 

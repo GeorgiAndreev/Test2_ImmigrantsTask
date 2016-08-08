@@ -58,7 +58,9 @@ public class RadicalImmigrant extends Immigrant implements IIllegalImmigrant{
 			Weapon weapon = (Weapon) iterator.next();
 			shotPatrons += ((IShooting) weapon).shoot();
 		}
-		int killedPeople = Generation.generateInteger(((1/10) * shotPatrons), ((7/10) * shotPatrons));
+		
+		int killedPeople = Generation.generateInteger((int)(shotPatrons / 10), (int)((shotPatrons / 10) * 7));
+		System.out.println("killed people: " + killedPeople);
 		this.getCurrentTown().setNumberOfInhabitants(this.getCurrentTown().getNumberOfInhabitants() - killedPeople);
 	}
 
