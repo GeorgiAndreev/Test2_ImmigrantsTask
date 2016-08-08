@@ -50,37 +50,15 @@ public class Demo {
 			// 1. create country with 5 towns, set their number of inhabitants,
 			// create police employees and divide them equally among towns
 
-			Country bulgariq = new Country("Bulgariq");
-
-			Town pleven = new Town("Pleven", 100000);
-			Town varna = new Town("Varna", 200000);
-			Town burgas = new Town("Burgas", 150000);
-			Town smolqn = new Town("Smolqn", 90000);
-			Town sofiq = new Town("Sofiq", 2000000);
-
-			bulgariq.addTown(pleven);
-			bulgariq.addTown(varna);
-			bulgariq.addTown(burgas);
-			bulgariq.addTown(smolqn);
-			bulgariq.addTown(sofiq);
-
-			for (int index = 0; index < 1000; index++) {
-				pleven.addPoliceEmployee(new PoliceOfficer(Generation.generateMaleOrFemaleName(), pleven, bulgariq));
-				varna.addPoliceEmployee(new PoliceOfficer(Generation.generateMaleOrFemaleName(), varna, bulgariq));
-				burgas.addPoliceEmployee(new PoliceOfficer(Generation.generateMaleOrFemaleName(), burgas, bulgariq));
-				smolqn.addPoliceEmployee(new PoliceOfficer(Generation.generateMaleOrFemaleName(), smolqn, bulgariq));
-				sofiq.addPoliceEmployee(new PoliceOfficer(Generation.generateMaleOrFemaleName(), sofiq, bulgariq));
+			Country country = new Country(Generation.generateTownOrCountryName());
+			
+			int numberOfTowns = 5;
+			
+			for (int index = 0; index < numberOfTowns; index++) {
+				country.addTown(new Town(Generation.generateTownOrCountryName(), Generation.generateInteger(80000, 200000)));
 			}
-			for (int index = 0; index < 400; index++) {
-				pleven.addPoliceEmployee(
-						new SpecPoliceOfficer(Generation.generateMaleOrFemaleName(), pleven, bulgariq));
-				varna.addPoliceEmployee(new SpecPoliceOfficer(Generation.generateMaleOrFemaleName(), varna, bulgariq));
-				burgas.addPoliceEmployee(
-						new SpecPoliceOfficer(Generation.generateMaleOrFemaleName(), burgas, bulgariq));
-				smolqn.addPoliceEmployee(
-						new SpecPoliceOfficer(Generation.generateMaleOrFemaleName(), smolqn, bulgariq));
-				sofiq.addPoliceEmployee(new SpecPoliceOfficer(Generation.generateMaleOrFemaleName(), sofiq, bulgariq));
-			}
+			
+			country.addPoliceEmployeesToAllTowns();
 
 			// 2. create 100 immigrants of different types with different
 			// probabilities,
@@ -159,10 +137,12 @@ public class Demo {
 			// when immigrant immigrates to a town, a police officer is chosen
 			// to check their passport
 			
+			Town townToUseInDemo = country.getRandomTown();
+			
 			System.out.println("\nImmigrants start to immigrate...\n");
 			for (Iterator<Immigrant> iterator = immigrants.iterator(); iterator.hasNext();) {
 				Immigrant immigrant = (Immigrant) iterator.next();
-				immigrant.immigrate(pleven);
+				immigrant.immigrate(townToUseInDemo);
 			}
 
 			// 5. show information for every immigrant:
@@ -182,7 +162,7 @@ public class Demo {
 
 			int counter = 0;
 			System.out.println("\n");
-			for (Iterator<Immigrant> iterator = pleven.getImmigrants().iterator(); iterator.hasNext();) {
+			for (Iterator<Immigrant> iterator = townToUseInDemo.getImmigrants().iterator(); iterator.hasNext();) {
 				Immigrant immigrant = (Immigrant) iterator.next();
 				if (immigrant instanceof EkstremistImmigrant) {
 					if (((EkstremistImmigrant) immigrant).checkIfHasBomb()) {
@@ -205,7 +185,7 @@ public class Demo {
 			// show immigrants sorted by amount of money they have,
 			// show all immigrants that had bomb and had detonated it
 
-			bulgariq.showTownsSortedByNumberOfInhabitants();
+			country.showTownsSortedByNumberOfInhabitants();
 
 			immigrants.sort(new MoneyOfImmigrantsComparator());
 
@@ -220,7 +200,7 @@ public class Demo {
 
 			int countDetonatedBombs = 0;
 			System.out.println("\nExtremist immigrants that detonated bomb:");
-			for (Iterator<Immigrant> iterator = pleven.getImmigrants().iterator(); iterator.hasNext();) {
+			for (Iterator<Immigrant> iterator = townToUseInDemo.getImmigrants().iterator(); iterator.hasNext();) {
 				Immigrant immigrant = (Immigrant) iterator.next();
 				if (immigrant instanceof EkstremistImmigrant) {
 					if (((EkstremistImmigrant) immigrant).isDetonatedBomb()) {

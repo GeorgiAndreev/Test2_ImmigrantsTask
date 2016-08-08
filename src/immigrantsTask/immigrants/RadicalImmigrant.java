@@ -67,9 +67,9 @@ public class RadicalImmigrant extends Immigrant implements IIllegalImmigrant{
 	@Override
 	public void showImmigrantInfo() {
 		if (this.pasport == null) {
-			System.out.println("\nThis immigrant has no passport,");
+			System.out.println("\nThis immigrant (" + this.getName() + ") has no passport,");
 		} else {
-			System.out.println("\nThis immigrant has passport,");
+			System.out.println("\nThis immigrant (" + this.getName() + ") has passport,");
 		}
 		super.showImmigrantInfo();
 	}

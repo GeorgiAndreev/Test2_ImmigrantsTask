@@ -43,7 +43,7 @@ public class NormalImmigrant extends Immigrant {
 
 	@Override
 	public void showImmigrantInfo() {
-		System.out.println("\nThis immigrant has passport,");
+		System.out.println("\nThis immigrant (" + this.getName() + ") has passport,");
 		super.showImmigrantInfo();
 	}
 	

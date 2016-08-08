@@ -16,8 +16,8 @@ public class EkstremistImmigrant extends Immigrant implements IIllegalImmigrant 
 	private boolean detonatedBomb;
 	private ArrayList<Weapon> weapons;
 
-	public EkstremistImmigrant(String name, float nachalnaSumaPari) throws ImmigrantException {
-		super(name, nachalnaSumaPari);
+	public EkstremistImmigrant(String name, float initialAmountMoney) throws ImmigrantException {
+		super(name, initialAmountMoney);
 		this.weapons = new ArrayList<>();
 	}
 
@@ -54,7 +54,7 @@ public class EkstremistImmigrant extends Immigrant implements IIllegalImmigrant 
 			if ((this.getCurrentTown() != null) && (this.getCurrentTown().getCountry() != null) && (this.getCurrentTown().getName() != null)) {
 				this.detonatedBomb = true;
 				this.getCurrentTown().getCountry().removeTown(this.getCurrentTown());
-				throw new BombExploadedException("Bomb exploaded in town " + this.getCurrentTown().getName());
+				throw new BombExploadedException("Bomb exploaded in " + this.getCurrentTown().getName() + " town.");
 			} else {
 				System.out.println("Extremist must be in a town to detonate their bomb.");
 			}		
@@ -63,7 +63,7 @@ public class EkstremistImmigrant extends Immigrant implements IIllegalImmigrant 
 
 	@Override
 	public void showImmigrantInfo() {
-		System.out.println("\nThis immigrant has no passport,");
+		System.out.println("\nThis immigrant (" + this.getName() + ") has no passport,");
 		super.showImmigrantInfo();
 	}
 

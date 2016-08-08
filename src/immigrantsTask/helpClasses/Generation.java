@@ -16,7 +16,7 @@ public abstract class Generation {
 		return randomString;
 	}
 	
-	public static String generateTownName() {
+	public static String generateTownOrCountryName() {
 		return generateMaleOrFemaleName();
 	}
 	
