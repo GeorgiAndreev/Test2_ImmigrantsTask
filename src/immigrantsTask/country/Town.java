@@ -43,7 +43,7 @@ public class Town {
 				this.immigrants.add(immigrant);
 				immigrant.setCurrentTown(this);
 			} else {
-				policeEmployee.arrestImmigrant(immigrant);
+				policeEmployee.catchImmigrant(immigrant);
 			}
 		} else {
 			throw new TownException("Invalid immigrant");

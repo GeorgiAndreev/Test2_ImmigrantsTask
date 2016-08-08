@@ -69,7 +69,7 @@ public abstract class Immigrant implements Comparable<Immigrant>{
 	}
 	
 	public int getNumberOfRelatives() {
-		int numberOfRelatives =0;
+		int numberOfRelatives = 0;
 		for (Iterator<Immigrant> iterator = relatives.iterator(); iterator.hasNext();) {
 			Immigrant immigrant = (Immigrant) iterator.next();
 			if(immigrant != null) {
@@ -80,7 +80,11 @@ public abstract class Immigrant implements Comparable<Immigrant>{
 	}
 	
 	public void immigrate(Town town) throws Exception {
-		town.addImigrant(this);
+		if (Validation.validateObjectIsNotNull(town)) {
+			town.addImigrant(this);
+		} else {
+			throw new ImmigrantException("Invalid town to immigrate to.");
+		}
 	}
 	
 	@Override

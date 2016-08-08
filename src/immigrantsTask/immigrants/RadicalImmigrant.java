@@ -51,11 +51,6 @@ public class RadicalImmigrant extends Immigrant implements IIllegalImmigrant{
 			throw new IllegalImmigrantDiedFromRageException("Immigrant had not enough money to buy weapon and died from rage.");
 		}	
 	}
-
-	@Override
-	public void shootAtPeople() throws Exception {	
-		
-	}
 	
     public void shootWithAllWeapons() throws Exception {	
     	int shotPatrons = 0;
@@ -77,8 +72,8 @@ public class RadicalImmigrant extends Immigrant implements IIllegalImmigrant{
 		super.showImmigrantInfo();
 	}
 
-	@Override
-	public boolean checkIfHasShootingWeapon() throws Exception {
+	
+	public boolean checkIfHasShootingWeapon() {
 		if (weapons.isEmpty()) {
 			return false;
 		}

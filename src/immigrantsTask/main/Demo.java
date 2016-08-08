@@ -184,20 +184,15 @@ public class Demo {
 					if (((EkstremistImmigrant) immigrant).checkIfHasBomb()) {
 						((EkstremistImmigrant) immigrant).detonateBomb();
 						counter++;
-					} else {
-						if (((EkstremistImmigrant) immigrant).checkIfHasShootingWeapon()) {
-							((EkstremistImmigrant) immigrant).shootAtPeople();
-							counter++;
-						}
-					}
+					} 
 				}
 				if (immigrant instanceof RadicalImmigrant) {
 					if (((RadicalImmigrant) immigrant).checkIfHasShootingWeapon()) {
-						((RadicalImmigrant) immigrant).shootAtPeople();
+						((RadicalImmigrant) immigrant).shootWithAllWeapons();
 						counter++;
 					}
 				}
-				if (counter >= 5) {
+				if (counter >= 20) {
 					break;
 				}
 			}

@@ -36,11 +36,6 @@ public class EkstremistImmigrant extends Immigrant implements IIllegalImmigrant 
 					"Immigrant had not enough money to buy weapon and died from rage.");
 		}
 	}
-
-	@Override
-	public void shootAtPeople() throws Exception {
-
-	}
 	
 	public boolean checkIfHasBomb() {
 		for (Iterator<Weapon> iterator = weapons.iterator(); iterator.hasNext();) {
@@ -71,17 +66,6 @@ public class EkstremistImmigrant extends Immigrant implements IIllegalImmigrant 
 	public void showImmigrantInfo() {
 		System.out.println("\nThis immigrant has no passport,");
 		super.showImmigrantInfo();
-	}
-
-	@Override
-	public boolean checkIfHasShootingWeapon() throws Exception {
-		for (Iterator<Weapon> iterator = weapons.iterator(); iterator.hasNext();) {
-			Weapon weapon = (Weapon) iterator.next();
-			if (!(weapon instanceof Detonateable)) {
-				return true;
-			}
-		}
-		return false;
 	}
 
 	public boolean isDetonatedBomb() {

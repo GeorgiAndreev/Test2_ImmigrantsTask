@@ -14,7 +14,7 @@ public class SpecPoliceOfficer extends PoliceEmployee implements IPoliceEmployee
 	}
 
 	@Override
-	public void arrestImmigrant(Immigrant immigrant) throws Exception {
+	public void catchImmigrant(Immigrant immigrant) throws Exception {
 		// TODO Auto-generated method stub
 		
 	}
