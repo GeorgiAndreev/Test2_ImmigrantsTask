@@ -49,7 +49,7 @@ public class Demo {
 
 			// 1. create country with 5 towns, set their number of inhabitants,
 			// create police employees and divide them equally among towns
-			
+
 			Country bulgariq = new Country("Bulgariq");
 
 			Town pleven = new Town("Pleven", 100000);
@@ -72,10 +72,13 @@ public class Demo {
 				sofiq.addPoliceEmployee(new PoliceOfficer(Generation.generateMaleOrFemaleName(), sofiq, bulgariq));
 			}
 			for (int index = 0; index < 400; index++) {
-				pleven.addPoliceEmployee(new SpecPoliceOfficer(Generation.generateMaleOrFemaleName(), pleven, bulgariq));
+				pleven.addPoliceEmployee(
+						new SpecPoliceOfficer(Generation.generateMaleOrFemaleName(), pleven, bulgariq));
 				varna.addPoliceEmployee(new SpecPoliceOfficer(Generation.generateMaleOrFemaleName(), varna, bulgariq));
-				burgas.addPoliceEmployee(new SpecPoliceOfficer(Generation.generateMaleOrFemaleName(), burgas, bulgariq));
-				smolqn.addPoliceEmployee(new SpecPoliceOfficer(Generation.generateMaleOrFemaleName(), smolqn, bulgariq));
+				burgas.addPoliceEmployee(
+						new SpecPoliceOfficer(Generation.generateMaleOrFemaleName(), burgas, bulgariq));
+				smolqn.addPoliceEmployee(
+						new SpecPoliceOfficer(Generation.generateMaleOrFemaleName(), smolqn, bulgariq));
 				sofiq.addPoliceEmployee(new SpecPoliceOfficer(Generation.generateMaleOrFemaleName(), sofiq, bulgariq));
 			}
 
@@ -84,35 +87,33 @@ public class Demo {
 			// set their names, money and passports where possible,
 			// give every immigrant two relatives from the other immigrants
 
-			ArrayList<RadicalImmigrant> radikalImmigrants = new ArrayList<>(25);
-			ArrayList<EkstremistImmigrant> ekstremistImmigrants = new ArrayList<>(35);
-			ArrayList<NormalImmigrant> normalImmigrants = new ArrayList<>(40);
-			ArrayList<Immigrant> immigrants = new ArrayList<>(100);
+			int numberOfAllImmigrants = 100;
+			int numberOfRadicalsWithPassport = 9;
+			int numberOfRadicalsWithoutPassport = 16; 
+			int numberOfExtremists = 35;
+			int numberOfNormals = 40;
+			
+			ArrayList<Immigrant> immigrants = new ArrayList<>(numberOfAllImmigrants);
 
-			for (int index = 0; index < 9; index++) {
-				String name = Generation.generateMaleOrFemaleName();
-				radikalImmigrants
-						.add(new RadicalImmigrant(name, Generation.generateMoney(850, 4000), new Passport(name)));
+			for (int index = 0; index < numberOfAllImmigrants; index++) {
+				if (index < numberOfRadicalsWithPassport) {
+					String name = Generation.generateMaleOrFemaleName();
+					immigrants.add(new RadicalImmigrant(name, Generation.generateMoney(850, 4000), new Passport(name)));
+				}
+				if ((index >= numberOfRadicalsWithPassport) && (index < (numberOfRadicalsWithPassport + numberOfRadicalsWithoutPassport))) {
+					immigrants.add(new RadicalImmigrant(Generation.generateMaleOrFemaleName(),
+							Generation.generateMoney(850, 4000)));
+				}
+				if ((index >= (numberOfRadicalsWithPassport + numberOfRadicalsWithoutPassport)) && (index < (numberOfRadicalsWithPassport + numberOfRadicalsWithoutPassport + numberOfExtremists))) {
+					immigrants.add(new EkstremistImmigrant(Generation.generateMaleOrFemaleName(),
+							Generation.generateMoney(850, 4000)));
+				}
+				if ((index >= (numberOfRadicalsWithPassport + numberOfRadicalsWithoutPassport + numberOfExtremists)) && (index < (numberOfRadicalsWithPassport + numberOfRadicalsWithoutPassport + numberOfExtremists + numberOfNormals))) {
+					immigrants.add(new NormalImmigrant(Generation.generateMaleOrFemaleName(),
+							Generation.generateMoney(400, 1000)));
+				}			
 			}
 
-			for (int index = 0; index < 16; index++) {
-				radikalImmigrants
-						.add(new RadicalImmigrant(Generation.generateMaleOrFemaleName(), Generation.generateMoney(850, 4000)));
-			}
-
-			for (int index = 0; index < 35; index++) {
-				ekstremistImmigrants
-						.add(new EkstremistImmigrant(Generation.generateMaleOrFemaleName(), Generation.generateMoney(850, 4000)));
-			}
-
-			for (int index = 0; index < 40; index++) {
-				normalImmigrants
-						.add(new NormalImmigrant(Generation.generateMaleOrFemaleName(), Generation.generateMoney(400, 1000)));
-			}
-
-			immigrants.addAll(normalImmigrants);
-			immigrants.addAll(radikalImmigrants);
-			immigrants.addAll(ekstremistImmigrants);
 			Collections.shuffle(immigrants);
 
 			addTwoRelativesToImmigrants(immigrants);
@@ -121,28 +122,25 @@ public class Demo {
 			// every illegal immigrant tries to buy 5 of them,
 			// and if a weapon is sold it cannot be sold again
 
+			int numberOfAllWeapons = 200;
 			int numberOfBombs = Generation.generateInteger(0, 70);
 			int numberOfPistols = Generation.generateInteger(0, 70);
-			int numberOfSubmachineGuns = (int) (200 - numberOfBombs - numberOfPistols);
+			int numberOfSubmachineGuns = numberOfAllWeapons - numberOfBombs - numberOfPistols;
+			
+			ArrayList<Weapon> weapons = new ArrayList<>(numberOfAllWeapons);
 
-			ArrayList<Bomb> bombs = new ArrayList<>(numberOfBombs);
-			ArrayList<Pistol> pistols = new ArrayList<>(numberOfPistols);
-			ArrayList<SubmachineGun> submachineGuns = new ArrayList<>(numberOfSubmachineGuns);
-
-			for (int index = 0; index < numberOfBombs; index++) {
-				bombs.add(new Bomb(Generation.generateMoney(300, 900)));
-			}
-			for (int index = 0; index < numberOfPistols; index++) {
-				pistols.add(new Pistol(Generation.generateMoney(300, 900)));
-			}
-			for (int index = 0; index < numberOfSubmachineGuns; index++) {
-				submachineGuns.add(new SubmachineGun(Generation.generateMoney(300, 900)));
+			for (int index = 0; index < numberOfAllWeapons; index++) {
+				if (index < numberOfBombs) {
+					weapons.add(new Bomb(Generation.generateMoney(300, 900)));
+				}
+				if ((index >= numberOfBombs) && (index < (numberOfBombs + numberOfPistols))) {
+					weapons.add(new Pistol(Generation.generateMoney(300, 900)));
+				}
+				if ((index >= (numberOfBombs + numberOfPistols)) && (index < (numberOfBombs + numberOfPistols + numberOfSubmachineGuns))) {
+					weapons.add(new SubmachineGun(Generation.generateMoney(300, 900)));
+				}	
 			}
 
-			ArrayList<Weapon> weapons = new ArrayList<>(numberOfSubmachineGuns + numberOfBombs + numberOfPistols);
-			weapons.addAll(submachineGuns);
-			weapons.addAll(pistols);
-			weapons.addAll(bombs);
 			Collections.shuffle(weapons);
 
 			for (Iterator<Immigrant> iterator = immigrants.iterator(); iterator.hasNext();) {

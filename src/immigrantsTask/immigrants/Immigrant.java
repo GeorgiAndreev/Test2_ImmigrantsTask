@@ -30,7 +30,12 @@ public abstract class Immigrant implements Comparable<Immigrant>{
 	}
 	
 	public void showImmigrantInfo() {
-		System.out.println("lives currently in " + this.currentTown + ",");
+		if (this.currentTown == null) {
+			System.out.println("has no current town to live in,");
+		} else {
+			System.out.println("lives currently in " + this.currentTown.getName() + ",");
+		}
+		
 		System.out.println("has " + this.getInitialAmountMoney() + " euros,");
 		boolean hasRelatives = false;
 		for (Iterator<Immigrant> iterator = relatives.iterator(); iterator.hasNext();) {
