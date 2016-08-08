@@ -142,6 +142,8 @@ public class Demo {
 			}
 
 			Collections.shuffle(weapons);
+			
+			System.out.println("\nImmigrants start to buy weapons...\n");
 
 			for (Iterator<Immigrant> iterator = immigrants.iterator(); iterator.hasNext();) {
 				Immigrant immigrant = (Immigrant) iterator.next();
@@ -156,19 +158,18 @@ public class Demo {
 			// 4. all immigrants immigrate to random town,
 			// when immigrant immigrates to a town, a police officer is chosen
 			// to check their passport
-
-			System.out.println("\n");
 			
+			System.out.println("\nImmigrants start to immigrate...\n");
 			for (Iterator<Immigrant> iterator = immigrants.iterator(); iterator.hasNext();) {
 				Immigrant immigrant = (Immigrant) iterator.next();
-				pleven.addImigrant(immigrant);
+				immigrant.immigrate(pleven);
 			}
 
 			// 5. show information for every immigrant:
 			// current town, wheather has password, money and names of relatives
 
 			int count = 1;
-			System.out.println("\nImmigrants unsorted:");
+			System.out.println("\nAll immigrants unsorted:");
 			for (Iterator<Immigrant> iterator = immigrants.iterator(); iterator.hasNext();) {
 				Immigrant immigrant = (Immigrant) iterator.next();
 				System.out.println("\n" + (count++));
@@ -209,7 +210,7 @@ public class Demo {
 			immigrants.sort(new MoneyOfImmigrantsComparator());
 
 			count = 1;
-			System.out.println("\nImmigrants sorted by amount of money:");
+			System.out.println("\nAll immigrants sorted by amount of money:");
 			for (Iterator<Immigrant> iterator = immigrants.iterator(); iterator.hasNext();) {
 				Immigrant immigrant = (Immigrant) iterator.next();
 				System.out.println("\n" + (count++));

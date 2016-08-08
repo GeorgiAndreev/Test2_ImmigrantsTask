@@ -81,7 +81,15 @@ public abstract class Immigrant implements Comparable<Immigrant>{
 	
 	public void immigrate(Town town) throws Exception {
 		if (Validation.validateObjectIsNotNull(town)) {
+			if ((this.currentTown != null) && (this.currentTown.getName().equals(town.getName()))) {
+				System.out.println("Immigrant is already in this town.");
+				return;
+			}
 			town.addImigrant(this);
+			for (Iterator<Immigrant> iterator = relatives.iterator(); iterator.hasNext();) {
+				Immigrant immigrant = (Immigrant) iterator.next();
+				immigrant.immigrate(town);	
+			}
 		} else {
 			throw new ImmigrantException("Invalid town to immigrate to.");
 		}

@@ -42,6 +42,7 @@ public class Town {
 			if (policeEmployee.checkImmigrant(immigrant)) {
 				this.immigrants.add(immigrant);
 				immigrant.setCurrentTown(this);
+				System.out.println("Immigrant entered " + this.name + " town.");
 			} else {
 				policeEmployee.catchImmigrant(immigrant);
 			}
