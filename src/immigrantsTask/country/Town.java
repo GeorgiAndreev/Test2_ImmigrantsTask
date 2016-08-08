@@ -2,13 +2,11 @@ package immigrantsTask.country;
 
 import java.util.ArrayList;
 
-import immigrantsTask.exceptions.CountryException;
 import immigrantsTask.exceptions.TownException;
 import immigrantsTask.helpClasses.Generation;
 import immigrantsTask.helpClasses.Validation;
 import immigrantsTask.immigrants.IIllegalImmigrant;
 import immigrantsTask.immigrants.Immigrant;
-import immigrantsTask.policeEmployees.IPoliceEmployee;
 import immigrantsTask.policeEmployees.PoliceEmployee;
 import immigrantsTask.policeEmployees.PoliceOfficer;
 import immigrantsTask.policeEmployees.SpecPoliceOfficer;

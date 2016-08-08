@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.TreeSet;
 
+import immigrantsTask.comparators.TownsByNumberOfInhabitantsComparator;
 import immigrantsTask.exceptions.CountryException;
 import immigrantsTask.exceptions.PoliceEmployeeException;
 import immigrantsTask.exceptions.TownException;
 import immigrantsTask.helpClasses.Generation;
-import immigrantsTask.helpClasses.NumberOfInhabitantsInTownsComparator;
 import immigrantsTask.helpClasses.Validation;
 import immigrantsTask.policeEmployees.PoliceOfficer;
 import immigrantsTask.policeEmployees.SpecPoliceOfficer;
@@ -77,10 +77,10 @@ public class Country {
 	public void showTownsSortedByNumberOfInhabitants(){
 		ArrayList<Town> townsSorted = new ArrayList<Town>(this.towns.size());
 		townsSorted.addAll(this.towns);
-		townsSorted.sort(new NumberOfInhabitantsInTownsComparator());
+		townsSorted.sort(new TownsByNumberOfInhabitantsComparator());
 		System.out.println("\nTowns in country " + this.name + " sorted by number of inhabitants:");
 		int count = 1;
-		for (Iterator iterator = townsSorted.iterator(); iterator.hasNext();) {
+		for (Iterator<Town> iterator = townsSorted.iterator(); iterator.hasNext();) {
 			Town town = (Town) iterator.next();
 			System.out.println((count++) + ": " + town.getName() + ": " + town.getNumberOfInhabitants() + " inhabitants");
 		}

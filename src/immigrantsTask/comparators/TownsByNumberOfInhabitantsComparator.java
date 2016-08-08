@@ -1,10 +1,10 @@
-package immigrantsTask.helpClasses;
+package immigrantsTask.comparators;
 
 import java.util.Comparator;
 
 import immigrantsTask.country.Town;
 
-public class NumberOfInhabitantsInTownsComparator implements Comparator<Town>{
+public class TownsByNumberOfInhabitantsComparator implements Comparator<Town>{
 
 	@Override
 	public int compare(Town town1, Town town2) {

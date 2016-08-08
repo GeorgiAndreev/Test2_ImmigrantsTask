@@ -1,10 +1,10 @@
-package immigrantsTask.helpClasses;
+package immigrantsTask.comparators;
 
 import java.util.Comparator;
 
 import immigrantsTask.immigrants.Immigrant;
 
-public class MoneyOfImmigrantsComparator implements Comparator<Immigrant>{
+public class ImmigrantsByMoneyComparator implements Comparator<Immigrant>{
 
 	@Override
 	public int compare(Immigrant immigrant1, Immigrant immigrant2) {

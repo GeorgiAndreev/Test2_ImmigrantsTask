@@ -1,6 +1,5 @@
 package immigrantsTask.immigrants;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 
 import immigrantsTask.exceptions.ImmigrantException;

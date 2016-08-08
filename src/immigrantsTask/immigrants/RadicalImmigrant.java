@@ -7,7 +7,6 @@ import immigrantsTask.exceptions.IllegalImmigrantDiedFromRageException;
 import immigrantsTask.exceptions.ImmigrantException;
 import immigrantsTask.helpClasses.Generation;
 import immigrantsTask.helpClasses.Validation;
-import immigrantsTask.weapons.Detonateable;
 import immigrantsTask.weapons.IShooting;
 import immigrantsTask.weapons.Weapon;
 

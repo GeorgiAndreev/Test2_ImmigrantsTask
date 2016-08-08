@@ -8,7 +8,6 @@ import immigrantsTask.helpClasses.Validation;
 import immigrantsTask.immigrants.EkstremistImmigrant;
 import immigrantsTask.immigrants.IIllegalImmigrant;
 import immigrantsTask.immigrants.Immigrant;
-import immigrantsTask.immigrants.NormalImmigrant;
 import immigrantsTask.immigrants.RadicalImmigrant;
 
 public class SpecPoliceOfficer extends PoliceEmployee implements IPoliceEmployee {
