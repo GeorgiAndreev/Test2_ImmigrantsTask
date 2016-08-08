@@ -2,6 +2,7 @@ package immigrantsTask.country;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.TreeSet;
 
 import immigrantsTask.exceptions.CountryException;
 import immigrantsTask.exceptions.TownException;
@@ -11,7 +12,7 @@ import immigrantsTask.helpClasses.Validation;
 public class Country {
 	
 	private String name;
-	private ArrayList<Town> towns = new ArrayList();
+	private TreeSet<Town> towns = new TreeSet<Town>();
 	
 	public Country(String name) throws CountryException {
 		if (Validation.validateString(name)) {

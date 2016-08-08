@@ -13,7 +13,7 @@ import immigrantsTask.policeEmployees.PoliceEmployee;
 import immigrantsTask.policeEmployees.PoliceOfficer;
 import immigrantsTask.policeEmployees.SpecPoliceOfficer;
 
-public class Town {
+public class Town  implements Comparable<Town>{
 
 	private String name;
 	private Country country;
@@ -78,6 +78,11 @@ public class Town {
 		}
 		return this.policeEmployees.get(indexOfPoliceEmployee);
 
+	}
+	
+	@Override
+	public int compareTo(Town town) {
+		return this.getName().compareTo(((Town) town).getName());
 	}
 
 	public String getName() {
