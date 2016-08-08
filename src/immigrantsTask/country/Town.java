@@ -68,7 +68,7 @@ public class Town {
 				return this.policeEmployees.get(indexOfPoliceEmployee);
 			} else {
 				while (true) {
-					indexOfPoliceEmployee = Generation.generateInteger(0, this.policeEmployees.size());
+					indexOfPoliceEmployee = Generation.generateInteger(0, this.policeEmployees.size() - 1);
 					if (this.policeEmployees.get(indexOfPoliceEmployee) instanceof PoliceOfficer) {
 						break;
 					}

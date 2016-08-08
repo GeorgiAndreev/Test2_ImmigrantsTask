@@ -48,15 +48,15 @@ public class Demo {
 		try {
 
 			// 1. create country with 5 towns, set their number of inhabitants,
-			// create police employees and divide them eyually among towns
+			// create police employees and divide them equally among towns
+			
+			Country bulgariq = new Country("Bulgariq");
 
 			Town pleven = new Town("Pleven", 100000);
 			Town varna = new Town("Varna", 200000);
 			Town burgas = new Town("Burgas", 150000);
 			Town smolqn = new Town("Smolqn", 90000);
 			Town sofiq = new Town("Sofiq", 2000000);
-
-			Country bulgariq = new Country("Bulgariq");
 
 			bulgariq.addTown(pleven);
 			bulgariq.addTown(varna);
@@ -65,18 +65,18 @@ public class Demo {
 			bulgariq.addTown(sofiq);
 
 			for (int index = 0; index < 1000; index++) {
-				pleven.addPoliceEmployee(new PoliceOfficer(Generation.generateName(), pleven, bulgariq));
-				varna.addPoliceEmployee(new PoliceOfficer(Generation.generateName(), varna, bulgariq));
-				burgas.addPoliceEmployee(new PoliceOfficer(Generation.generateName(), burgas, bulgariq));
-				smolqn.addPoliceEmployee(new PoliceOfficer(Generation.generateName(), smolqn, bulgariq));
-				sofiq.addPoliceEmployee(new PoliceOfficer(Generation.generateName(), sofiq, bulgariq));
+				pleven.addPoliceEmployee(new PoliceOfficer(Generation.generateMaleOrFemaleName(), pleven, bulgariq));
+				varna.addPoliceEmployee(new PoliceOfficer(Generation.generateMaleOrFemaleName(), varna, bulgariq));
+				burgas.addPoliceEmployee(new PoliceOfficer(Generation.generateMaleOrFemaleName(), burgas, bulgariq));
+				smolqn.addPoliceEmployee(new PoliceOfficer(Generation.generateMaleOrFemaleName(), smolqn, bulgariq));
+				sofiq.addPoliceEmployee(new PoliceOfficer(Generation.generateMaleOrFemaleName(), sofiq, bulgariq));
 			}
 			for (int index = 0; index < 400; index++) {
-				pleven.addPoliceEmployee(new SpecPoliceOfficer(Generation.generateName(), pleven, bulgariq));
-				varna.addPoliceEmployee(new SpecPoliceOfficer(Generation.generateName(), varna, bulgariq));
-				burgas.addPoliceEmployee(new SpecPoliceOfficer(Generation.generateName(), burgas, bulgariq));
-				smolqn.addPoliceEmployee(new SpecPoliceOfficer(Generation.generateName(), smolqn, bulgariq));
-				sofiq.addPoliceEmployee(new SpecPoliceOfficer(Generation.generateName(), sofiq, bulgariq));
+				pleven.addPoliceEmployee(new SpecPoliceOfficer(Generation.generateMaleOrFemaleName(), pleven, bulgariq));
+				varna.addPoliceEmployee(new SpecPoliceOfficer(Generation.generateMaleOrFemaleName(), varna, bulgariq));
+				burgas.addPoliceEmployee(new SpecPoliceOfficer(Generation.generateMaleOrFemaleName(), burgas, bulgariq));
+				smolqn.addPoliceEmployee(new SpecPoliceOfficer(Generation.generateMaleOrFemaleName(), smolqn, bulgariq));
+				sofiq.addPoliceEmployee(new SpecPoliceOfficer(Generation.generateMaleOrFemaleName(), sofiq, bulgariq));
 			}
 
 			// 2. create 100 immigrants of different types with different
@@ -90,24 +90,24 @@ public class Demo {
 			ArrayList<Immigrant> immigrants = new ArrayList<>(100);
 
 			for (int index = 0; index < 9; index++) {
-				String name = Generation.generateName();
+				String name = Generation.generateMaleOrFemaleName();
 				radikalImmigrants
 						.add(new RadicalImmigrant(name, Generation.generateMoney(850, 4000), new Passport(name)));
 			}
 
 			for (int index = 0; index < 16; index++) {
 				radikalImmigrants
-						.add(new RadicalImmigrant(Generation.generateName(), Generation.generateMoney(850, 4000)));
+						.add(new RadicalImmigrant(Generation.generateMaleOrFemaleName(), Generation.generateMoney(850, 4000)));
 			}
 
 			for (int index = 0; index < 35; index++) {
 				ekstremistImmigrants
-						.add(new EkstremistImmigrant(Generation.generateName(), Generation.generateMoney(850, 4000)));
+						.add(new EkstremistImmigrant(Generation.generateMaleOrFemaleName(), Generation.generateMoney(850, 4000)));
 			}
 
 			for (int index = 0; index < 40; index++) {
 				normalImmigrants
-						.add(new NormalImmigrant(Generation.generateName(), Generation.generateMoney(400, 1000)));
+						.add(new NormalImmigrant(Generation.generateMaleOrFemaleName(), Generation.generateMoney(400, 1000)));
 			}
 
 			immigrants.addAll(normalImmigrants);
