@@ -10,7 +10,7 @@ public class Pistol extends Weapon implements IShooting{
 	}
 
 	@Override
-	public int shoot() throws Exception {
+	public int shoot(){
 		System.out.println("Pistol shooting...");
 		int numberOfPatrons = Generation.generateInteger(30, 200);
 		return numberOfPatrons;

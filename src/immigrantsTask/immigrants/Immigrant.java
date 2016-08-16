@@ -52,6 +52,8 @@ public abstract class Immigrant implements Comparable<Immigrant> {
 	
 	public abstract boolean checkIfHasBomb();
 	
+	public abstract boolean checkIfHasShootingWeapon() throws Exception;
+	
 	public abstract boolean checkIfHasPassport();
 
 	public void addRelative(Immigrant relative) throws ImmigrantException {
