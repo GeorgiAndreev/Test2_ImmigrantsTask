@@ -28,30 +28,17 @@ public class PoliceOfficer extends PoliceEmployee implements IPoliceEmployee {
 	@Override
 	public boolean checkImmigrant(Immigrant immigrant) throws Exception {
 		if (Validation.validateObjectIsNotNull(immigrant)) {
-			if (immigrant instanceof NormalImmigrant) {
+			if (immigrant.checkIfHasBomb() == true) {
 				return true;
 			}
-			if (immigrant instanceof RadicalImmigrant) {
-				if (((RadicalImmigrant) immigrant).getPasport() != null) {
-					return true;
-				}
-				if (((RadicalImmigrant) immigrant).getPasport() == null) {
-					if(Generation.generateInteger(0, 100) > 50) {
-						this.catchImmigrant(immigrant);
-					} else {
-						return true;
-					}
-				}
+			if (immigrant.checkIfHasPassport() == true) {
+				return true;
 			}
-			if (immigrant instanceof EkstremistImmigrant) {
-				if (((EkstremistImmigrant) immigrant).checkIfHasBomb()) {
-					return true;
+			if (immigrant.checkIfHasPassport() == false) {
+				if (Generation.generateInteger(0, 100) > 50) {
+					this.catchImmigrant(immigrant);
 				} else {
-					if(Generation.generateInteger(0, 100) > 50) {
-						this.catchImmigrant(immigrant);
-					} else {
-						return true;
-					}
+					return true;
 				}
 			}
 		} else {

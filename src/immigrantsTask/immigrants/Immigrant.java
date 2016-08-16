@@ -1,5 +1,6 @@
 package immigrantsTask.immigrants;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.TreeSet;
 
@@ -36,40 +37,27 @@ public abstract class Immigrant implements Comparable<Immigrant> {
 		}
 
 		System.out.println("has " + this.getInitialAmountMoney() + " euros,");
-		boolean hasRelatives = false;
-		for (Iterator<Immigrant> iterator = relatives.iterator(); iterator.hasNext();) {
-			Immigrant relative = (Immigrant) iterator.next();
-			if (relative != null) {
-				hasRelatives = true;
-				break;
-			}
-		}
+		boolean hasRelatives = (!relatives.isEmpty());
 		if (hasRelatives) {
 			System.out.print("and has these relatives: ");
 			for (Iterator<Immigrant> iterator = relatives.iterator(); iterator.hasNext();) {
 				Immigrant relative = (Immigrant) iterator.next();
-				if (relative != null) {
-					System.out.print(relative.getName() + "; ");
-				}
+				System.out.print(relative.getName() + "; ");
 			}
 		}
 		if (!hasRelatives) {
 			System.out.print("and has no relatives.");
 		}
 	}
-
-	public void addRelativeCorrespondingly(Immigrant relative) throws ImmigrantException {
-		if ((Validation.validateObjectIsNotNull(relative)) && (relative.relatives.contains(this))) {
-			this.relatives.add(relative);
-		} else {
-			throw new ImmigrantException("Invalid relative.");
-		}
-	}
+	
+	public abstract boolean checkIfHasBomb();
+	
+	public abstract boolean checkIfHasPassport();
 
 	public void addRelative(Immigrant relative) throws ImmigrantException {
-		if (Validation.validateObjectIsNotNull(relative)) {
+		if (Validation.validateObjectIsNotNull(relative) && (relative != this)) {
 			this.relatives.add(relative);
-			relative.addRelativeCorrespondingly(this);
+			relative.relatives.add(this);
 		} else {
 			throw new ImmigrantException("Invalid relative.");
 		}

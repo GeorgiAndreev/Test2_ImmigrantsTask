@@ -5,6 +5,7 @@ import java.util.Iterator;
 
 import immigrantsTask.exceptions.IllegalImmigrantDiedFromRageException;
 import immigrantsTask.exceptions.ImmigrantException;
+import immigrantsTask.exceptions.PassportException;
 import immigrantsTask.helpClasses.Generation;
 import immigrantsTask.helpClasses.Validation;
 import immigrantsTask.weapons.IShooting;
@@ -17,17 +18,10 @@ public class RadicalImmigrant extends Immigrant implements IIllegalImmigrant{
 	private Passport pasport;
 	private ArrayList<IShooting> weapons; 
 	
-	public RadicalImmigrant(String name, float initialAmountMoney) throws ImmigrantException {
+	public RadicalImmigrant(String name, float initialAmountMoney) throws ImmigrantException, PassportException {
 		super(name, initialAmountMoney);
-		this.weapons = new ArrayList<IShooting>();
-	}
-	
-	public RadicalImmigrant(String name, float initialAmountMoney, Passport passport) throws ImmigrantException {
-		super(name, initialAmountMoney);
-		if (Validation.validateObjectIsNotNull(passport)) {
-			this.pasport = passport;
-		} else {
-			throw new ImmigrantException("Invalid passport.");
+		if (Generation.generateInteger(1, 100) <= 35) {
+			this.pasport = new Passport(this.getName());
 		}
 		this.weapons = new ArrayList<IShooting>();
 	}
@@ -47,7 +41,9 @@ public class RadicalImmigrant extends Immigrant implements IIllegalImmigrant{
 			weapon.markThatWeaponIsSold();
 			setInitialAmountMoney(this.getInitialAmountMoney() - weapon.getPrice());
 		} else {
-			this.getCurrentTown().getImmigrants().remove(this);
+			if ((this.getCurrentTown() != null) && (this.getCurrentTown().getImmigrants() != null)) {
+				this.getCurrentTown().getImmigrants().remove(this);
+			}
 			throw new IllegalImmigrantDiedFromRageException("Immigrant had not enough money to buy weapon and died from rage.");
 		}	
 	}
@@ -82,8 +78,18 @@ public class RadicalImmigrant extends Immigrant implements IIllegalImmigrant{
 		return true;
 	}
 
-	public Passport getPasport() {
-		return pasport;
+	@Override
+	public boolean checkIfHasBomb() {
+		return false;
+	}
+	
+
+	@Override
+	public boolean checkIfHasPassport() {
+		if (this.pasport == null) {
+			return false;
+		}
+		return true;
 	}
 
 }

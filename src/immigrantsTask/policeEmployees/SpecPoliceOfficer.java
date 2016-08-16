@@ -32,19 +32,10 @@ public class SpecPoliceOfficer extends PoliceEmployee implements IPoliceEmployee
 				throw new PoliceEmployeeException(
 						"Spec police officers examine only radical and extremist immigrants.");
 			}
-			if (immigrant instanceof RadicalImmigrant) {
-				if (((RadicalImmigrant) immigrant).getPasport() != null) {
-					return true;
-				}
-				if (((RadicalImmigrant) immigrant).getPasport() == null) {
-					if (Generation.generateInteger(0, 100) > 10) {
-						this.catchImmigrant(immigrant);
-					} else {
-						return true;
-					}
-				}
+			if (immigrant.checkIfHasPassport() == true) {
+				return true;
 			}
-			if (immigrant instanceof EkstremistImmigrant) {
+			if (immigrant.checkIfHasPassport() == false) {
 				if (Generation.generateInteger(0, 100) > 10) {
 					this.catchImmigrant(immigrant);
 				} else {

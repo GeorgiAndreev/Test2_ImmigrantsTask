@@ -39,6 +39,18 @@ public class NormalImmigrant extends Immigrant {
 		System.out.println("\nThis immigrant (" + this.getName() + ") has passport,");
 		super.showImmigrantInfo();
 	}
+
+
+	@Override
+	public boolean checkIfHasBomb() {
+		return false;
+	}
+
+
+	@Override
+	public boolean checkIfHasPassport() {
+		return true;
+	}
 	
 
 }

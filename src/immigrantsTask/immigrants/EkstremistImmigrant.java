@@ -37,6 +37,7 @@ public class EkstremistImmigrant extends Immigrant implements IIllegalImmigrant 
 		}
 	}
 	
+	@Override
 	public boolean checkIfHasBomb() {
 		for (Iterator<Weapon> iterator = weapons.iterator(); iterator.hasNext();) {
 			Weapon weapon = (Weapon) iterator.next();
@@ -62,13 +63,20 @@ public class EkstremistImmigrant extends Immigrant implements IIllegalImmigrant 
 	}
 
 	@Override
+	public boolean checkIfHasPassport() {
+		return false;
+	}
+	
+	@Override
 	public void showImmigrantInfo() {
 		System.out.println("\nThis immigrant (" + this.getName() + ") has no passport,");
 		super.showImmigrantInfo();
 	}
 
-	public boolean isDetonatedBomb() {
+	public boolean hasDetonatedBomb() {
 		return detonatedBomb;
 	}
+
+	
 
 }
