@@ -51,6 +51,12 @@ public class NormalImmigrant extends Immigrant {
 	public boolean checkIfHasPassport() {
 		return true;
 	}
+
+
+	@Override
+	public boolean checkIfHasShootingWeapon() throws Exception {
+		return false;
+	}
 	
 
 }

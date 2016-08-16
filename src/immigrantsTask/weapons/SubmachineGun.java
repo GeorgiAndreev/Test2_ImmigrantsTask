@@ -10,7 +10,7 @@ public class SubmachineGun extends Weapon implements IShooting{
 	}
 
 	@Override
-	public int shoot() throws Exception {
+	public int shoot(){
 		System.out.println("Submachine gun shooting...");
 		int numberOfPatrons = Generation.generateInteger(100, 400);
 		return numberOfPatrons;

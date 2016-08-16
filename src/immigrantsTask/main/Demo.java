@@ -147,15 +147,12 @@ public class Demo {
 			System.out.println("\n");
 			for (Iterator<Immigrant> iterator = townToUseInDemo.getImmigrants().iterator(); iterator.hasNext();) {
 				Immigrant immigrant = (Immigrant) iterator.next();
-				if (immigrant instanceof EkstremistImmigrant) {
-					if (((EkstremistImmigrant) immigrant).checkIfHasBomb()) {
-						((EkstremistImmigrant) immigrant).detonateBomb();
-						counter++;
-					}
-				}
-				if (immigrant instanceof RadicalImmigrant) {
-					if (((RadicalImmigrant) immigrant).checkIfHasShootingWeapon()) {
-						((RadicalImmigrant) immigrant).shootWithAllWeapons();
+				if (immigrant.checkIfHasBomb()) {
+					((EkstremistImmigrant) immigrant).detonateBomb();
+					counter++;
+				} else {
+					if (immigrant.checkIfHasShootingWeapon()) {
+						((IIllegalImmigrant) immigrant).shootWithAllWeapons();
 						counter++;
 					}
 				}
