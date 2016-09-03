@@ -1,5 +1,7 @@
 package immigrantsTask.helpClasses;
 
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.Random;
 
 public abstract class Generation {
@@ -70,8 +72,20 @@ public abstract class Generation {
 		return femaleName;
 	}
 	
+	public static float roundToSecondPositionAfterPoint(float floatToRound)
+	{
+		//DecimalFormat newFormat = new DecimalFormat("#.##");
+		//float twoDecimal =  Float.valueOf(newFormat.format(floatToRound));
+		//return twoDecimal;
+		//return (float) ((float)Math.round (floatToRound * 100.0) / 100.0);
+		BigDecimal money = BigDecimal.valueOf(floatToRound);
+		money = money.setScale(2, BigDecimal.ROUND_HALF_UP);
+		return money.floatValue();
+    }
+	
 	public static float generateMoney(int min, int max) {
-		return (float)(min + (Math.random() * ((max - min) + 1)));
+		float unRoundMoney = (float)(min + (Math.random() * ((max - min) + 1)));
+		return roundToSecondPositionAfterPoint(unRoundMoney);
 	}
 	
 	public static int generateInteger(int min, int max) {
