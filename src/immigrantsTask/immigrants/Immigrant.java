@@ -9,11 +9,14 @@ import immigrantsTask.exceptions.ImmigrantException;
 import immigrantsTask.helpClasses.Validation;
 
 public abstract class Immigrant implements Comparable<Immigrant> {
+	
+	private static int id;
 
 	private String name;
 	private float initialAmountMoney;
 	private Town currentTown;
 	protected TreeSet<Immigrant> relatives;
+	private int lastId;
 
 	public Immigrant(String name, float initialAmountMoney) throws ImmigrantException {
 		if (Validation.validateString(name)) {
@@ -27,6 +30,7 @@ public abstract class Immigrant implements Comparable<Immigrant> {
 			throw new ImmigrantException("Invalid money.");
 		}
 		this.relatives = new TreeSet<Immigrant>();
+		this.lastId = id++;
 	}
 
 	public void showImmigrantInfo() {
@@ -57,23 +61,16 @@ public abstract class Immigrant implements Comparable<Immigrant> {
 	public abstract boolean checkIfHasPassport();
 
 	public void addRelative(Immigrant relative) throws ImmigrantException {
-		if (Validation.validateObjectIsNotNull(relative) && (relative != this)) {
+		if (Validation.validateObjectIsNotNull(relative)  && (relative != this)) {
 			this.relatives.add(relative);
 			relative.relatives.add(this);
 		} else {
 			throw new ImmigrantException("Invalid relative.");
 		}
 	}
-
-	public int getNumberOfRelatives() {
-		int numberOfRelatives = 0;
-		for (Iterator<Immigrant> iterator = relatives.iterator(); iterator.hasNext();) {
-			Immigrant immigrant = (Immigrant) iterator.next();
-			if (immigrant != null) {
-				numberOfRelatives++;
-			}
-		}
-		return numberOfRelatives;
+	
+	public int returnCurrentNumberOfRelatives() {
+		return this.relatives.size();
 	}
 
 	public void immigrate(Town town) throws Exception {
@@ -94,7 +91,12 @@ public abstract class Immigrant implements Comparable<Immigrant> {
 
 	@Override
 	public int compareTo(Immigrant immigrant) {
-		return this.getName().compareTo(((Immigrant) immigrant).getName());
+		//return this.getName().compareTo(((Immigrant) immigrant).getName());
+		return this.getLastId() - ((Immigrant) immigrant).getLastId();
+	}
+	
+	public boolean isNormal(){
+		return false;
 	}
 
 	public String getName() {
@@ -107,6 +109,10 @@ public abstract class Immigrant implements Comparable<Immigrant> {
 
 	public Town getCurrentTown() {
 		return currentTown;
+	}
+
+	public int getLastId() {
+		return lastId;
 	}
 
 	public void setInitialAmountMoney(float initialAmountMoney) throws ImmigrantException {
